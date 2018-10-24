@@ -7,9 +7,13 @@
 	margin:0;
 	display:flex;
 	justify-content:center;
-	align-items:center;
+	
 	width:1200px;
-	height:500px;
+	height:568px;
+}
+#treeImage {
+    border: 10px inset yellowgreen;
+    border-image: url(https://i.pinimg.com/originals/ef/28/65/ef286539b2537c1605a9c215ac28a4a0.jpg) 30 round;
 }
 #woodAmount {
 	position:fixed;
@@ -25,12 +29,12 @@
 </style>
 <body>
 <div class="treeButton">
-<img id="treeImage"; onclick="clickTree();" onmouseover="changeToAxe();" src="https://i.imgur.com/HO6REsj.png";/>
+<img id="treeImage"; onclick="clickTree();" onmouseover="changeToAxe();" src="https://i.imgur.com/aGBT0tm.png";/>
 </div>
 <div class="woodIcon">
-<img src="https://i.imgur.com/X6Vz2uK.png";/>
-</div>
+<img id="woodIcon;" src="https://i.imgur.com/X6Vz2uK.png";/>
 <p id="woodAmount">0</p>
+</div>
 </body>
 </script>
 </body>
@@ -38,13 +42,18 @@
 <script>
 
 
-//THINGS TO ADD
+//THINGS TO ADD///////
 //something that tells you what you got from every click
 //upgrades
 //achievements?
 //businessees and such to invest in
 //money currency
 //add proper explanation to your shitty code
+//trees having to be bought with money
+////This means I have to make a way to limit the amount of trees depending on how many trees I cureently own
+//feature that makes cutting trees take longer
+////cut time can be shortened with better axes
+///////////////////////
 
 
 //changes the cursor to an axe icon when hovering over tree
@@ -65,31 +74,43 @@ var treesCutDown = 0; //the amount of trees cut down (duh)
 var assurance = 0; 
 async function clickTree() {
 	if(treeClicked == 0) {
-		document.getElementById('treeImage').src='https://i.imgur.com/oIDRBcS.png';
+		document.getElementById('treeImage').src='https://i.imgur.com/9dYxQOs.png';
 		treeClicked++;
 		//woodCount++;
 		//document.getElementById("woodAmount").innerHTML = woodCount;
 	}
 	else if(treeClicked == 1) {
-		document.getElementById('treeImage').src='https://i.imgur.com/HClHDQk.png';
+		document.getElementById('treeImage').src='https://i.imgur.com/uUXjx0k.png';
 		treeClicked++;
 		//woodCount++;
 		//document.getElementById("woodAmount").innerHTML = woodCount;
 	}
 	else if(treeClicked == 2) {
-		document.getElementById('treeImage').src='https://i.imgur.com/w5jRIsh.png';
+		document.getElementById('treeImage').src='https://i.imgur.com/RUmLW5d.png';
 		treeClicked++;
 		//woodCount++;
 		//document.getElementById("woodAmount").innerHTML = woodCount;
 	}
 	else if(treeClicked == 3) {
-		document.getElementById('treeImage').src='https://i.imgur.com/1Ei4EuU.png';
+		document.getElementById('treeImage').src='https://i.imgur.com/TLJzfH6.png';
 		treeClicked++;
 		//woodCount++;
 		//document.getElementById("woodAmount").innerHTML = woodCount;
 	}
 	else if(treeClicked == 4) {
-		var treeArray = ['https://i.imgur.com/BsXMcrZ.png', 'https://i.imgur.com/wWg9bd1.png']; //used to make the last image random
+		document.getElementById('treeImage').src='https://i.imgur.com/9rr9haX.png';
+		treeClicked++;
+		//woodCount++;
+		//document.getElementById("woodAmount").innerHTML = woodCount;
+	}
+	else if(treeClicked == 5) {
+		document.getElementById('treeImage').src='https://i.imgur.com/ZRlTtkj.png';
+		treeClicked++;
+		//woodCount++;
+		//document.getElementById("woodAmount").innerHTML = woodCount;
+	}
+	else if(treeClicked == 6) {
+		var treeArray = ['https://i.imgur.com/YGtLRnA.png', 'https://i.imgur.com/5A2LW1e.png']; //used to make the last image random
 		var randomTree = treeArray.splice(Math.floor(Math.random() * treeArray.length));
 		document.getElementById('treeImage').src = randomTree; //https://i.imgur.com/BsXMcrZ.png
 		console.log(treeClicked)
@@ -100,7 +121,7 @@ async function clickTree() {
 			treesCutDown++;
 			document.getElementById("woodAmount").innerHTML = woodCount;
 		} else {
-		document.getElementById('treeImage').src='https://i.imgur.com/HO6REsj.png';
+		document.getElementById('treeImage').src='https://i.imgur.com/aGBT0tm.png';
 		treeClicked = 0;
 		assurance--;
 		}
