@@ -4,16 +4,18 @@
 </head>
 <style>
 .treeButton {
-	margin:0;
+	/*margin:0;
 	display:flex;
-	justify-content:center;
-	
-	width:1200px;
-	height:568px;
+	justify-content:center;*/
+	position:fixed;
+	left:35%;
+	top:0%;
 }
 #treeImage {
     border: 10px inset yellowgreen;
     border-image: url(https://i.pinimg.com/originals/ef/28/65/ef286539b2537c1605a9c215ac28a4a0.jpg) 30 round;
+    width:400px;
+	height:566px;
 }
 #woodAmount {
 	position:fixed;
@@ -35,32 +37,146 @@
 	top:40%;
 	left:1%;
 }
+#treeAmount {
+	position:fixed;
+	top:15%;
+	left:2.3%;
+}
+.treeIcon {
+	position:fixed;
+	top:22%;
+	left:0%;
+}
 .sell {
 	position:fixed;
 	top:90%;
 }
-	
+
+
+
+
+
+
+/*Thanks to https://codepen.io/kalem/pen/XdoRQx for menu design */
+.toggle-menu {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  position: relative;
+  top: 10px;
+  float: right;
+  z-index: 1000;
+}
+
+.toggle-menu i {
+  position: absolute;
+  display: block;
+  height: 2px;
+  background: black;
+  width: 30px;
+  left: 0px;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+
+.toggle-menu i:nth-child(1) {
+  top: 16px;
+}
+
+.toggle-menu i:nth-child(2) {
+  top: 24px;
+}
+
+.toggle-menu i:nth-child(3) {
+  top: 32px;
+}
+
+.toggle-menu.active i:nth-child(1) {
+  top: 25px;
+  -webkit-transform: rotateZ(45deg);
+  transform: rotateZ(45deg);
+}
+
+.toggle-menu.active i:nth-child(2) {
+  background: transparent;
+}
+
+.toggle-menu.active i:nth-child(3) {
+  top: 25px;
+  -webkit-transform: rotateZ(-45deg);
+  transform: rotateZ(-45deg);
+}
+
+.container {
+  position: relative;
+  overflow: hidden;
+  height: 300px;
+}
+
+.menu-drawer {
+  width: 94px;
+  background-color: #ccc;
+  background-image: url(https://i.pinimg.com/originals/ef/28/65/ef286539b2537c1605a9c215ac28a4a0.jpg) 
+  height: 900px;
+  position: absolute;
+  right: -550px;
+  top: 0;
+  transition: right linear .2s;
+  padding: 0px;
+  border: 10px solid green;
+  border-image: url(https://i.pinimg.com/originals/ef/28/65/ef286539b2537c1605a9c215ac28a4a0.jpg) 30 round;
+}
+
+.open {
+  right: 50px;
+  transition: right linear .2s;
+}
+/*End of menu code*/
 </style>
 <body>
+<!--Upgrades menu -->
+	<div class="container">
+	  <a class="toggle-menu" href="#">
+	    <i></i>
+	    <i></i>
+	    <i></i>
+	  </a>
+	    <div class="menu-drawer">
+	      <button onclick="upgrade(1);">Upgrade axe</button><br>
+	      <button onclick="upgrade(1);">Upgrade axe</button><br>
+	      <button onclick="upgrade(1);">Upgrade axe</button><br>
+	      <button onclick="upgrade(1);">Upgrade axe</button><br>
+	      <button onclick="upgrade(1);">Upgrade axe</button><br>
+	      <button onclick="upgrade(1);">Upgrade axe</button><br>
+	    </div>
+	</div>
+
+
 	<div class="sell">
-		<input type="number"; id="inputAmount"; value="";>
+		<input type="text"; onkeypress="return isNumberKey(event)"; id="inputAmount"; value="";>
 		<button onclick="sellWood();">Sell wood</button>
 	</div>
-	<div>
-		<button onclick="upgrade(1);">Upgrade axe</button>
-	</div>
+
 	<div class="treeButton">
 		<img id="treeImage"; onclick="clickTree();" onmouseover="changeToAxe();" src="https://i.imgur.com/aGBT0tm.png"; draggable="false";/>
 	</div>
+
 	<div class="woodIcon">
 		<img id="woodIcon;" src="https://i.imgur.com/X6Vz2uK.png";/>
 		<p id="woodAmount">0</p>
 	</div>
-		<div class="moneyIcon">
+
+	<div class="moneyIcon">
 		<img id="moneyIcon;" src="https://i.imgur.com/szakyEf.png";/>
 		<p id="moneyAmount">0</p>
 	</div>
-	</body>
+
+	<div class="treeIcon">
+		<img id="treeIcon;" src="https://i.imgur.com/96dPZQ8.png";/>
+		<p id="treeAmount">10</p>
+	</div>
+
+</body>
 </script>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -81,6 +197,22 @@
 //Make different variants to trees
 //////////////////////
 
+// Hide and show upgrades menu
+$(function() {
+  $(".toggle-menu").click(function() {
+    $(this).toggleClass("active");
+    $('.menu-drawer').toggleClass("open");
+  });
+});
+
+
+// Restrict input field to numbers (better this way ;-P)
+function isNumberKey(evt){
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+    return true;
+}
 
 // Changes the cursor to an axe icon when hovering over tree
 function changeToAxe() {
@@ -93,10 +225,12 @@ function sleep(ms) {
 }
 
 // Used for delaying each axe swing
-var delayTime = 100; //usually 750, 0 when testing the game
+var delayTime = 750; //usually 750, 0 when testing the game
 var canGo = true;
 // uUpgrade affected variables
-var woodValue = 2; //the value of each individual piece of wood. Increased using upgrades (not yet implemented)
+var woodValue = 2; // The value of each individual piece of wood. Increased using upgrades (not yet implemented)
+var treeAmount = 9; // Amount of trees owned, does not go down when a tree is cut down.
+var shownTreeAmount = 10;
 // Currency variables and such
 var treeClicked = 0;
 var woodCount = 0; // The amount of wood
@@ -104,82 +238,94 @@ var splinters = 0; // The amount of splinters
 var treesCutDown = 0; // The amount of trees cut down (duh)
 var money = 0; // The amount of money
 var assurance = 0; 
-function clickTree() {
-	if(treeClicked == 0 && canGo) {
-		document.getElementById('treeImage').src='https://i.imgur.com/9dYxQOs.png';
-		treeClicked++;
-		//document.getElementById("splinterAmount").innerHTML = splinters; //used later for splinters
-		canGo = false;
-		setTimeout(function () {
-        	canGo = true;
-        }, delayTime)
-	}
-	else if(treeClicked == 1 && canGo) {
-		document.getElementById('treeImage').src='https://i.imgur.com/uUXjx0k.png';
-		treeClicked++;
-		canGo = false;
-		setTimeout(function () {
-        	canGo = true;
-        }, delayTime)
-	}
-	else if(treeClicked == 2 && canGo) {
-		document.getElementById('treeImage').src='https://i.imgur.com/RUmLW5d.png';
-		treeClicked++;
-		//document.getElementById("woodAmount").innerHTML = woodCount;
-		canGo = false;
-		setTimeout(function () {
-        	canGo = true;
-        }, delayTime)
-	}
-	else if(treeClicked == 3 && canGo) {
-		document.getElementById('treeImage').src='https://i.imgur.com/TLJzfH6.png';
-		treeClicked++;
-		//document.getElementById("woodAmount").innerHTML = woodCount;
-		canGo = false;
-		setTimeout(function () {
-        	canGo = true;
-        }, delayTime)
-	}
-	else if(treeClicked == 4 && canGo) {
-		document.getElementById('treeImage').src='https://i.imgur.com/9rr9haX.png';
-		treeClicked++;
-		//document.getElementById("woodAmount").innerHTML = woodCount;
-		canGo = false;
-		setTimeout(function () {
-        	canGo = true;
-        }, delayTime)
-	}
-	else if(treeClicked == 5 && canGo) {
-		document.getElementById('treeImage').src='https://i.imgur.com/ZRlTtkj.png';
-		treeClicked++;
-		//document.getElementById("woodAmount").innerHTML = woodCount;
-		canGo = false;
-		setTimeout(function () {
-        	canGo = true;
-        }, delayTime)
-	}
-	else if(treeClicked == 6 && canGo) {
-		var treeArray = ['https://i.imgur.com/YGtLRnA.png', 'https://i.imgur.com/5A2LW1e.png']; //makes the last image random
-		var randomTree = treeArray.splice(Math.floor(Math.random() * treeArray.length));
-		document.getElementById('treeImage').src = randomTree;
-		//https://i.imgur.com/r5RJOHT.png
-		if(assurance == 0) {
-			woodCount += 5;
-			assurance++;
-			treesCutDown++;
-			document.getElementById("woodAmount").innerHTML = woodCount;
+
+console.log(treesCutDown)
+console.log(treeAmount)
+
+async function clickTree() {
+	if(treeAmount >= treesCutDown) {
+		if(treeClicked == 0 && canGo) {
+			document.getElementById('treeImage').src='https://i.imgur.com/9dYxQOs.png';
+			treeClicked++;
+			//document.getElementById("splinterAmount").innerHTML = splinters; //used later for splinters
 			canGo = false;
 			setTimeout(function () {
-        		canGo = true;
-        	}, delayTime)
-		} else {
-		document.getElementById('treeImage').src='https://i.imgur.com/aGBT0tm.png';
-		treeClicked = 0;
-		assurance--;
+	        	canGo = true;
+	        }, delayTime)
 		}
+		else if(treeClicked == 1 && canGo) {
+			document.getElementById('treeImage').src='https://i.imgur.com/uUXjx0k.png';
+			treeClicked++;
+			canGo = false;
+			setTimeout(function () {
+	        	canGo = true;
+	        }, delayTime)
+		}
+		else if(treeClicked == 2 && canGo) {
+			document.getElementById('treeImage').src='https://i.imgur.com/RUmLW5d.png';
+			treeClicked++;
+			//document.getElementById("woodAmount").innerHTML = woodCount;
+			canGo = false;
+			setTimeout(function () {
+	        	canGo = true;
+	        }, delayTime)
+		}
+		else if(treeClicked == 3 && canGo) {
+			document.getElementById('treeImage').src='https://i.imgur.com/TLJzfH6.png';
+			treeClicked++;
+			//document.getElementById("woodAmount").innerHTML = woodCount;
+			canGo = false;
+			setTimeout(function () {
+	        	canGo = true;
+	        }, delayTime)
+		}
+		else if(treeClicked == 4 && canGo) {
+			document.getElementById('treeImage').src='https://i.imgur.com/9rr9haX.png';
+			treeClicked++;
+			//document.getElementById("woodAmount").innerHTML = woodCount;
+			canGo = false;
+			setTimeout(function () {
+	        	canGo = true;
+	        }, delayTime)
+		}
+		else if(treeClicked == 5 && canGo) {
+			document.getElementById('treeImage').src='https://i.imgur.com/ZRlTtkj.png';
+			treeClicked++;
+			//document.getElementById("woodAmount").innerHTML = woodCount;
+			canGo = false;
+			setTimeout(function () {
+	        	canGo = true;
+	        }, delayTime)
+		}
+		else if(treeClicked == 6 && canGo) {
+			var treeArray = ['https://i.imgur.com/YGtLRnA.png', 'https://i.imgur.com/5A2LW1e.png']; //makes the last image random
+			var randomTree = treeArray.splice(Math.floor(Math.random() * treeArray.length));
+			document.getElementById('treeImage').src = randomTree;
+			//https://i.imgur.com/r5RJOHT.png
+			if(assurance == 0) {
+				woodCount += 5;
+				document.getElementById("woodAmount").innerHTML = woodCount;
+				assurance++;
+				treesCutDown++;
+				shownTreeAmount--;
+				document.getElementById("treeAmount").innerHTML = shownTreeAmount;
+				console.log(treesCutDown)
+				canGo = false;
+				setTimeout(function () {
+	        		canGo = true;
+	        	}, delayTime)
+			} else {
+			document.getElementById('treeImage').src='https://i.imgur.com/aGBT0tm.png';
+			treeClicked = 0;
+			assurance--;
+			}
+		}
+	} else {
+		document.getElementById("inputAmount").value = "No more trees left!";
+		await sleep(3000);
+		document.getElementById("inputAmount").value = "";
 	}
 }
-
 // Reads the input value and subtracts it from "woodCount"
 // Only sells if there is enough wood
 async function sellWood() {
@@ -196,7 +342,6 @@ async function sellWood() {
 	await sleep(1000);
 	document.getElementById("inputAmount").value = "";
 }
-
 document.onkeydown = function(e){
     e = e || window.event;
     var key = e.which || e.keyCode;
@@ -205,13 +350,14 @@ document.onkeydown = function(e){
     }
 }
 
-function upgrade(num) {
 
+// something
+function upgrade(num) {
 	switch(num){
 		case 0:
-
 			break;
 		case 1:
+		    // Upgrade 1 = Better axe
 			delayTime = 600;
 			console.log(delayTime);
 			break;
@@ -220,6 +366,4 @@ function upgrade(num) {
 			break;
 	}
 }
-
-
 </script>
