@@ -42,22 +42,25 @@
 	
 </style>
 <body>
-<div class="sell">
-<input type="text"; id="inputAmount"; value=""; onkeypress="return isNumberKey(event)";>
-<button onclick="sellWood();">Sell wood</button>
-</div>
-<div class="treeButton">
-<img id="treeImage"; onclick="clickTree();" onmouseover="changeToAxe();" src="https://i.imgur.com/aGBT0tm.png"; draggable="false";/>
-</div>
-<div class="woodIcon">
-<img id="woodIcon;" src="https://i.imgur.com/X6Vz2uK.png";/>
-<p id="woodAmount">0</p>
-</div>
-<div class="moneyIcon">
-<img id="moneyIcon;" src="https://i.imgur.com/szakyEf.png";/>
-<p id="moneyAmount">0</p>
-</div>
-</body>
+	<div class="sell">
+		<input type="number"; id="inputAmount"; value="";>
+		<button onclick="sellWood();">Sell wood</button>
+	</div>
+	<div>
+		<button onclick="upgrade(1);">Upgrade axe</button>
+	</div>
+	<div class="treeButton">
+		<img id="treeImage"; onclick="clickTree();" onmouseover="changeToAxe();" src="https://i.imgur.com/aGBT0tm.png"; draggable="false";/>
+	</div>
+	<div class="woodIcon">
+		<img id="woodIcon;" src="https://i.imgur.com/X6Vz2uK.png";/>
+		<p id="woodAmount">0</p>
+	</div>
+		<div class="moneyIcon">
+		<img id="moneyIcon;" src="https://i.imgur.com/szakyEf.png";/>
+		<p id="moneyAmount">0</p>
+	</div>
+	</body>
 </script>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -76,31 +79,30 @@
 //Purchasing an acre of forest yelds a random amount of trees and a message is displayed saying this
 ////Displaying acres with the trees showing
 //Make different variants to trees
-///////////////////////
+//////////////////////
 
 
-//changes the cursor to an axe icon when hovering over tree
+// Changes the cursor to an axe icon when hovering over tree
 function changeToAxe() {
 	treeImage.style.cursor = "url('https://i.imgur.com/fbAJUwR.png'), auto";
 }
 
-//used to delay certain things
+// Used to delay certain things
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-//used for delaying each axe swing
-var delayTime = 750; //usually 750, 0 when testing the game
-var canGo = true,
-    delay = delayTime;
-//upgrade affected variables
-var woodValue = 1; //the value of each individual piece of wood. Increased using upgrades (not yet implemented)
-//currency variables and such
+// Used for delaying each axe swing
+var delayTime = 100; //usually 750, 0 when testing the game
+var canGo = true;
+// uUpgrade affected variables
+var woodValue = 2; //the value of each individual piece of wood. Increased using upgrades (not yet implemented)
+// Currency variables and such
 var treeClicked = 0;
-var woodCount = 0; //the amount of wood
-var splinters = 0; //the amount of splinters
-var treesCutDown = 0; //the amount of trees cut down (duh)
-var money = 0; //the amount of money
+var woodCount = 0; // The amount of wood
+var splinters = 0; // The amount of splinters
+var treesCutDown = 0; // The amount of trees cut down (duh)
+var money = 0; // The amount of money
 var assurance = 0; 
 function clickTree() {
 	if(treeClicked == 0 && canGo) {
@@ -108,9 +110,9 @@ function clickTree() {
 		treeClicked++;
 		//document.getElementById("splinterAmount").innerHTML = splinters; //used later for splinters
 		canGo = false;
-		setTimeout(function () { //
+		setTimeout(function () {
         	canGo = true;
-        }, delay)
+        }, delayTime)
 	}
 	else if(treeClicked == 1 && canGo) {
 		document.getElementById('treeImage').src='https://i.imgur.com/uUXjx0k.png';
@@ -118,7 +120,7 @@ function clickTree() {
 		canGo = false;
 		setTimeout(function () {
         	canGo = true;
-        }, delay)
+        }, delayTime)
 	}
 	else if(treeClicked == 2 && canGo) {
 		document.getElementById('treeImage').src='https://i.imgur.com/RUmLW5d.png';
@@ -127,7 +129,7 @@ function clickTree() {
 		canGo = false;
 		setTimeout(function () {
         	canGo = true;
-        }, delay)
+        }, delayTime)
 	}
 	else if(treeClicked == 3 && canGo) {
 		document.getElementById('treeImage').src='https://i.imgur.com/TLJzfH6.png';
@@ -136,7 +138,7 @@ function clickTree() {
 		canGo = false;
 		setTimeout(function () {
         	canGo = true;
-        }, delay)
+        }, delayTime)
 	}
 	else if(treeClicked == 4 && canGo) {
 		document.getElementById('treeImage').src='https://i.imgur.com/9rr9haX.png';
@@ -145,7 +147,7 @@ function clickTree() {
 		canGo = false;
 		setTimeout(function () {
         	canGo = true;
-        }, delay)
+        }, delayTime)
 	}
 	else if(treeClicked == 5 && canGo) {
 		document.getElementById('treeImage').src='https://i.imgur.com/ZRlTtkj.png';
@@ -154,7 +156,7 @@ function clickTree() {
 		canGo = false;
 		setTimeout(function () {
         	canGo = true;
-        }, delay)
+        }, delayTime)
 	}
 	else if(treeClicked == 6 && canGo) {
 		var treeArray = ['https://i.imgur.com/YGtLRnA.png', 'https://i.imgur.com/5A2LW1e.png']; //makes the last image random
@@ -169,7 +171,7 @@ function clickTree() {
 			canGo = false;
 			setTimeout(function () {
         		canGo = true;
-        	}, delay)
+        	}, delayTime)
 		} else {
 		document.getElementById('treeImage').src='https://i.imgur.com/aGBT0tm.png';
 		treeClicked = 0;
@@ -178,16 +180,8 @@ function clickTree() {
 	}
 }
 
-//restricts the input to numbers only
-function isNumberKey(evt){
-    var charCode = (evt.which) ? evt.which : event.keyCode
-    if (charCode > 31 && (charCode < 48 || charCode > 57))
-        return false;
-    return true;
-}
-
-//reads the input value and subtracts it from "woodCount"
-//only sells if there is enough wood
+// Reads the input value and subtracts it from "woodCount"
+// Only sells if there is enough wood
 async function sellWood() {
 	var inputValue = document.getElementById("inputAmount").value;
 	var woodCountAmount = woodCount;
@@ -202,4 +196,30 @@ async function sellWood() {
 	await sleep(1000);
 	document.getElementById("inputAmount").value = "";
 }
+
+document.onkeydown = function(e){
+    e = e || window.event;
+    var key = e.which || e.keyCode;
+    if(key===13){
+ 		sellWood();
+    }
+}
+
+function upgrade(num) {
+
+	switch(num){
+		case 0:
+
+			break;
+		case 1:
+			delayTime = 600;
+			console.log(delayTime);
+			break;
+		default:
+			console.log("error in upgrade function");
+			break;
+	}
+}
+
+
 </script>
