@@ -7,12 +7,35 @@
 	font-family: Consolas;
 }
 
+button {
+	background:transparent;
+	color:white;
+}
 
-.container {
-  position: fixed;
-  top:35px;
-  height: 300px;
-  left:50%;
+html,body
+{
+    height: 100%;
+}
+body
+{
+   display: table; 
+   margin: 0 auto;
+}
+
+input[type="text"] {
+    width: 180px;
+    color: white;
+    background:transparent;
+    border-color:black;
+}
+
+
+#upgradesContainer {
+	position: fixed;
+	top:35px;
+	height: 300px;
+	left:50%;
+	display:none;
 }
 
 .menu-drawer {
@@ -35,11 +58,6 @@
 .sell {
 	/*position:fixed;*/
 	top:1%;
-}
-
-input[type="text"] {
-    width: 180px;
-    color: black;
 }
 
 
@@ -120,17 +138,6 @@ input[type="text"] {
 	display: none;
 }
 
-
-html,body
-{
-    height: 100%;
-}
-body
-{
-   display: table; 
-   margin: 0 auto;
-}
-
 #treeFrame
 {  
     height: 100%;
@@ -162,50 +169,67 @@ body
 	overflow:hidden;
 }
 
+/*#itemShop {
+	border-left: 2px inset black;
+	border-right: 2px inset black;
+	border-bottom: 2px inset black;
+	position:absolute;
+	left:230px;
+	top:0px;
+	height:40%;
+	width:90px;
+	background:url(https://i.pinimg.com/originals/ef/28/65/ef286539b2537c1605a9c215ac28a4a0.jpg) repeat-y bottom;
+	color:#ccc;
+	text-align:center;
+}
+
+#itemShop>div {
+	display:inline-block;
+	border-bottom:0px solid #000;
+	/*box-shadow:0px 0px 3px 1px rgba(255,255,255,0.2) inset;*/
+	padding:7px 8px 9px 8px;
+}*/
+
 </style>
 <body>
 	<!--Upgrades menu -->
-	<div class="container">
+	<div id="upgradesContainer">
 	    <div class="menu-drawer">
-	      <button onclick="upgrade(1);">Upgrade axe</button><br>
-	      <button onclick="showLumberjack(); showLumberjackUpgrades(); changeToAxe();">Hire lumberjack</button><br>
-	      	<div id="lumberjackUpgrades">
-	      		<button onclick="upgrade(2);">Faster lumberjack</button><br>
-	      		<button onclick="upgrade(3);">Lumberjack superspeed</button><br>
-	  		</div>
+	        <button onclick="upgrade(1);">Upgrade axe</button><br>
+		      	<div id="lumberjackUpgrades">
+		      		<button onclick="upgrade(2);">Faster lumberjack</button><br>
+		      		<button onclick="upgrade(3);">Lumberjack superspeed</button><br>
+		  		</div>
+	  		<button onclick="upgrade(10);">Give tree</button><br>
 	      <!-- <button onclick="upgrade(x);">x</button><br> -->
 	    </div>
 	</div>
 
 
 
-<div id="sectionMiddle">
+	<div id="sectionMiddle">
 
-	<div id="treeFrame">
+		<div id="treeFrame">
 
-		<div class="treeButton">
+			<div class="treeButton">
 
-			<!-- <img id="lumberjackImage"; onclick="clickTree();" src="https://i.imgur.com/UCmm79r.png"; draggable="false";/> -->
+				<img id="treeImage"; onclick="clickTree();" onmouseover="changeToAxe();" src="https://i.imgur.com/aGBT0tm.png"; draggable="false";/>
 
-			<img id="treeImage"; onclick="clickTree();" onmouseover="changeToAxe();" src="https://i.imgur.com/aGBT0tm.png"; draggable="false";/>
-
-		</div>
-
-	</div>
-
-
-
-
-	<div id="lumberjackFrame">
-
-		<div class="treeButton">
-
-			<img id="lumberjackImage"; onclick="clickTree();" src="https://i.imgur.com/UCmm79r.png"; draggable="false";/>
+			</div>
 
 		</div>
 
+
+		<div id="lumberjackFrame">
+
+			<div class="treeButton">
+
+				<img id="lumberjackImage"; onclick="clickTree();" src="https://i.imgur.com/UCmm79r.png"; draggable="false";/>
+
+			</div>
+
+		</div>
 	</div>
-</div>
 
 
 	<div id="sideBar">
@@ -235,14 +259,25 @@ body
 	</div>
 
 
+	<div id="itemShop">
+		<div>  </div>
+
+
+	</div>
+
+
 	<div id="topBar">
 		<div>Wood Cutter</div>
 
-		<div><a href="https://www.pixilart.com/dwastelander" target="_blank">Pixilart</a></div>
+		<!-- <div><a href="https://www.pixilart.com/dwastelander" target="_blank">Pixilart</a></div> -->
 
 		<div class="sell"><input type="text"; onkeypress="return isNumberKey(event)"; id="inputAmount"; value="";></div>
 
 		<div><button onclick="sellWood();">Sell wood</button></div>
+
+		<div><button id="showUpgrades" onclick="showUpgrades();">Show upgrades</button></div>
+
+		<div><button onclick="showLumberjack(); showLumberjackUpgrades(); changeToAxe();">Hire lumberjack</button></div>
 
 	</div>
 
@@ -275,6 +310,8 @@ body
 ////Growing mechanism: random amount of time (withing a certin set amount of time) before next plant stage until fully grown
 ////Tree growth starts off at literally 10 years until maturity. This is shortened by some kind of potion of whatever.
 //Something showing how much logs are worth
+//A way to pause and then start the lumberjack again
+//Item shop
 //////////////////////
 
 //ADDED FEATURES/////
@@ -283,7 +320,7 @@ body
 
 
 // Used for delaying each axe swing
-var delayTime = 750; //usually 750, 0 when testing the game
+var delayTime = 10; //usually 750, 0 when testing the game
 var canGo = true;
 
 // uUpgrade affected variables
@@ -302,22 +339,28 @@ var assurance = 0;
 
 
 
-// Hide and show upgrades menu
-$(function() {
-  $(".toggle-menu").click(function() {
-    $(this).toggleClass("active");
-    $('.menu-drawer').toggleClass("open");
-  });
-});
+function showUpgrades() {
+    var x = document.getElementById("upgradesContainer");
+    console.log(x.style.display);
+    if (x.style.display === "block") {
+        x.style.display = "none";
+        document.getElementById("showUpgrades").innerHTML = "Show upgrades";
+    } else {
+        x.style.display = "block";
+        document.getElementById("showUpgrades").innerHTML = "Hide upgrades";
+    }
+}
 
 
 // Restrict input field to numbers (better this way ;-P)
-function isNumberKey(evt){
-    var charCode = (evt.which) ? evt.which : event.keyCode
-    if (charCode > 31 && (charCode < 48 || charCode > 57))
-        return false;
-    return true;
-}
+// Realized there wasn't really a need for it
+
+// function isNumberKey(evt){
+//     var charCode = (evt.which) ? evt.which : event.keyCode
+//     if (charCode > 31 && (charCode < 48 || charCode > 57))
+//         return false;
+//     return true;
+// }
 
 // Changes the cursor to an axe icon when hovering over tree
 function changeToAxe() {
@@ -334,7 +377,7 @@ function sleep(ms) {
 }
 
 async function clickTree() {
-	if(treeAmount >= treesCutDown && Lumberjack == false) {
+	if(treeAmount >= 0 && Lumberjack == false) {
 		if(treeStage == 0 && canGo) {
 			document.getElementById('treeImage').src='https://i.imgur.com/9dYxQOs.png';
 			treeStage++;
@@ -388,7 +431,7 @@ async function clickTree() {
 	        	canGo = true;
 	        }, delayTime)
 		}
-		else if(treeStage == 6 && canGo) {
+		else if(treeStage == 6 && canGo || treeStage == 7 && canGo) {
 			var treeArray = ['https://i.imgur.com/YGtLRnA.png', 'https://i.imgur.com/5A2LW1e.png']; //makes the last image random
 			var randomTree = treeArray.splice(Math.floor(Math.random() * treeArray.length));
 			document.getElementById('treeImage').src = randomTree;
@@ -399,9 +442,10 @@ async function clickTree() {
 				assurance++;
 				treesCutDown++;
 				treeAmount--;
+				treeStage++;
 				shownTreeAmount--;
 				document.getElementById("treeAmount").innerHTML = shownTreeAmount;
-				console.log(treesCutDown)
+				howMuch();
 				canGo = false;
 				setTimeout(function () {
 	        		canGo = true;
@@ -425,6 +469,17 @@ async function clickTree() {
 		}
 	}
 }
+
+async function howMuch() {
+	document.getElementById("inputAmount").value = "+5 wood";
+	await sleep(1000);
+	document.getElementById("inputAmount").value = "";
+}
+
+
+
+
+
 // Reads the input value and subtracts it from "woodCount"
 // Only sells if there is enough wood
 var inputValue = document.getElementById("inputAmount").value;
@@ -432,6 +487,9 @@ async function sellWood() {
 	var inputValue = document.getElementById("inputAmount").value;
 	var woodCountAmount = woodCount;
 	var inputSecure = woodCountAmount -= inputValue;
+	if(inputValue == "") {
+		document.getElementById("inputAmount").value = "How much wood? Type here.";
+	}
 	if(inputSecure >= 0) {
 		woodCount = inputSecure;
 		money += inputValue * woodValue;
@@ -473,6 +531,15 @@ function upgrade(num) {
 			lJackSpeed = 50;
 			console.log(lJackSpeed);
 			break;
+		case 10:
+			// Upgrade ? = Give one wood (only for testing)
+			treeAmount++;
+			shownTreeAmount++;
+			document.getElementById("treeAmount").innerHTML = shownTreeAmount;
+			if(treeAmount <= 1) {
+				lumberJack();
+			}
+			break;
 		default:
 			console.log("error in upgrade function");
 			break;
@@ -480,7 +547,7 @@ function upgrade(num) {
 }
 
 async function showLumberjackUpgrades() {
-	if(treeStage == 0) {
+	if(treeStage == 0 || treeStage == 7) {
 	    var x = document.getElementById("lumberjackUpgrades");
 	    console.log(x.style.display);
 	    if (x.style.display === "block") {
@@ -499,7 +566,7 @@ async function showLumberjackUpgrades() {
 // Hides him if he is not hidden
 // Calls the "lumberJack" function once to get it started
 function showLumberjack() {
-	if(treeStage == 0) {
+	if(treeStage == 0 || treeStage == 7) {
 	    var x = document.getElementById("lumberjackImage");
 	    console.log(x.style.display);
 	    console.log(Lumberjack);
@@ -520,7 +587,7 @@ var lJackTreeStage = 1; // The stage of the tree, goes up for every hit from the
 // Lumberjack animation and tree animation
 // Recursion <3
 async function lumberJack() {
-	if(treeStage == 0) {
+	if(treeStage == 0 || treeStage == 7) {
 		//variables used to modify the lumberjack's speed
 		var lJackSpeed2 = lJackSpeed;
 		var lJackSpeedHalf = lJackSpeed2/2
@@ -590,6 +657,9 @@ async function lumberJack() {
 		}
 	}
 }
+
+
+
 
 // Clicking on certain elements will trigger a description in the input field
 async function itemDescription(item) {
