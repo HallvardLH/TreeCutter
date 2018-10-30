@@ -186,9 +186,35 @@ input[type="text"] {
 #itemShop>div {
 	display:inline-block;
 	border-bottom:0px solid #000;
-	/*box-shadow:0px 0px 3px 1px rgba(255,255,255,0.2) inset;*/
 	padding:7px 8px 9px 8px;
 }*/
+
+#sectionRight
+{
+	height:100%;
+	position:absolute;
+	top:0px;
+	right:0px;
+	overflow-x:hidden;
+	overflow-y:scroll;
+	background:rgba(0,0,0,0);
+}
+#meadow {
+	left:0%;
+	top:5%;
+	position:relative;
+}
+#miniTree {
+	top:20%;
+	left:10px;
+	height:28;
+	width:28;
+	position:relative;
+}
+
+#meadowCanvas {
+	fill:#33691E;
+}
 
 </style>
 <body>
@@ -231,6 +257,34 @@ input[type="text"] {
 		</div>
 	</div>
 
+	<div id='sectionRight'>
+
+		<br><br>
+
+		<canvas id="meadowCanvas" width="200" height="100" style="border:1px solid #111;"></canvas>
+
+<!-- 				<div id='miniTree'>
+
+			<div class="miniTree">
+
+				<img id=""; src="https://i.imgur.com/VkP8ZRN.png";/>
+
+			</div>
+
+		</div>
+
+				<div id="meadow">
+
+			<div class="meadow">
+
+				<img id=""; src="https://i.imgur.com/fYUsX4J.png";/>
+
+			</div>
+
+		</div> -->
+
+
+	</div>
 
 	<div id="sideBar">
 
@@ -286,23 +340,28 @@ input[type="text"] {
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
+var canvas = document.getElementById("meadowCanvas");
+var ctx = canvas.getContext("2d");
+ctx.fillStyle = "#33691E";
+ctx.fillRect(10,10,5,5);
+ctx.fillRect(15,10,5,5);
+ctx.fillRect(20,10,5,5);
+ctx.fillRect(15,15,5,5);
+ctx.fillRect(15,5,5,5);
+
 
 //THINGS TO ADD///////
-//something that tells you what you got from every click
-//upgrades
 //achievements?
 ////Using the description function, clicking every clickable object gives achievement "clicker of everything"
 //businessees and such to invest in
 //money currency
 //trees having to be bought with money
 ////This means I have to make a way to limit the amount of trees depending on how many trees I cureently own
-//feature that makes cutting trees take longer
 ////cut time can be shortened with better axes
 //Purchasing an acre of forest yelds a random amount of trees and a message is displayed saying this
 ////Displaying acres with the trees showing
 //Make different variants to trees
 //Add fade out effect to last tree frame https://www.w3schools.com/jquery/eff_fadeout.asp
-//Pressing the "sell wood" button with an empty input field sells all wood
 //Golden wood
 ////Has a low chance of dropping
 ////Sappling from gold trees can be replanted in some sort of garden, or empty acres
@@ -316,6 +375,10 @@ input[type="text"] {
 
 //ADDED FEATURES/////
 //Lumberjack that enters the frame and cuts the tree automatically
+//something that tells you what you got from every click (added this to show in the inout bar, might change.)
+//upgrades (got the geral things to work for this)
+//feature that makes cutting trees take longer
+//Pressing the "sell wood" button with an empty input field sells all wood (changed this to instead ask how mich wood to sell)
 /////////////////////
 
 
@@ -647,6 +710,7 @@ async function lumberJack() {
 				document.getElementById("woodAmount").innerHTML = woodCount;
 				await sleep(lJackSpeedQuart);
 				x.style.left = "25px";
+				document.getElementById('treeImage').src='https://i.imgur.com/aGBT0tm.png';
 				await sleep(lJackSpeedQuart);
 				x.style.left = "5px";
 				await sleep(lJackSpeedHalf);
@@ -703,6 +767,15 @@ async function itemDescription(item) {
 			console.log("error in description function");
 			break;
 	}
+}
+
+
+var treeGenArray = ['https://i.imgur.com/S4qPteW.png', 'https://i.imgur.com/4XNkniK.png', 'https://i.imgur.com/ZzEWXuy.png'];
+
+function randomTree () {
+	var randomTreeGen = treeGenArray.splice(Math.floor(Math.random() * treeGenArray.length));
+
+
 }
 
 </script>
