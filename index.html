@@ -2,235 +2,195 @@
 <html>
 <head>
 </head>
-<style>
-*{
-	font-family: Consolas;
-}
-button {
-	background:transparent;
-	color:white;
-}
-html,body
-{
-    height: 100%;
-}
-body
-{
-   display: table; 
-   margin: 0 auto;
-}
-input[type="text"] {
-    width: 180px;
-    color: white;
-    background:transparent;
-    border-color:black;
-}
-#upgradesContainer {
-	position: fixed;
-	top:35px;
-	height: 300px;
-	left:50%;
-	display:none;
-}
-.menu-drawer {
-  width: 94px;
-  background-color: #ccc;
-  background-image: url(https://i.pinimg.com/originals/ef/28/65/ef286539b2537c1605a9c215ac28a4a0.jpg) 
-  height: 900px;
-  position: absolute;
-  right: -550px;
-  top: 0;
-  transition: right linear .2s;
-  padding: 0px;
-  border: 10px solid green;
-  border-image: url(https://i.pinimg.com/originals/ef/28/65/ef286539b2537c1605a9c215ac28a4a0.jpg) 30 round;
-}
-/*End of menu code*/
-.sell {
-	/*position:fixed;*/
-	top:1%;
-}
-#topBar
-{
-	position:absolute;
-	left:0px;
-	top:0px;
-	width:100%;
-	height:34px;
-	background:url(https://i.imgur.com/dD6dGTd.jpg) repeat-x bottom;
-	color:#ccc;
-}
-#topBar>div
-{
-	display:inline-block;
-	float:left;
-	border-right:0px solid #000;
-	/*box-shadow:0px 0px 3px 1px rgba(255,255,255,0.2) inset;*/
-	padding:7px 8px 9px 8px;
-}
-#topBar a
-{color:#fff;}
-#topBar a.blueLink
-{color:#06c;}
-#topBar a.blueLink:hover
-{color:#28f;text-shadow:0px 0px 3px #06c;}
-#sideBar {
-	position:absolute;
-	left:0px;
-	top:0px;
-	height:100%;
-	width:60px;
-	background:url(https://i.imgur.com/dD6dGTd.jpg) repeat-y bottom;
-	color:#ccc;
-}
-#sideBar>div
-{
-	display:inline-block;
-	float:left;
-	border-bottom:0px solid #000;
-	/*box-shadow:0px 0px 3px 1px rgba(255,255,255,0.2) inset;*/
-	padding:7px 8px 9px 8px;
-}
-#sideBar2 {
-	border-left: 2px inset black;
-	border-right: 2px inset black;
-	position:absolute;
-	left:60.3px;
-	top:0px;
-	height:100%;
-	width:90px;
-	background:url(https://i.imgur.com/dD6dGTd.jpg) repeat-y bottom;
-	color:#ccc;
-	text-align:center;
-}
-#sideBar2>div {
-	display:inline-block;
-	border-bottom:0px solid #000;
-	/*box-shadow:0px 0px 3px 1px rgba(255,255,255,0.2) inset;*/
-	padding:7px 8px 9px 8px;
-}
-#treeImage {
-    border: 10px inset yellowgreen;
-    border-image: url(https://i.pinimg.com/originals/ef/28/65/ef286539b2537c1605a9c215ac28a4a0.jpg) 30 round;
-    width:400px;
-	height:533px;
-}
-#lumberjackUpgrades {
-	display: none;
-}
-#treeFrame
-{  
-    height: 100%;
-    display: table-cell;   
-    vertical-align: middle;    
-    position: relative;
-	top:30px;
-}
-#lumberjackImage {
-    width:250px;
-	height:350px;
-	left:5px;
-	top:256px;
-	position:absolute;
-	display:none;
-}
-#sectionMiddle
-{
-	position:absolute;
-	left:30%;
-	padding-left:16px;
-	margin-right:15px;
-	top:0px;
-	right:300px;
-	bottom:0px;
-	min-width:100px;
-	overflow:hidden;
-}
-/*#itemShop {
-	border-left: 2px inset black;
-	border-right: 2px inset black;
-	border-bottom: 2px inset black;
-	position:absolute;
-	left:230px;
-	top:0px;
-	height:40%;
-	width:90px;
-	background:url(https://i.pinimg.com/originals/ef/28/65/ef286539b2537c1605a9c215ac28a4a0.jpg) repeat-y bottom;
-	color:#ccc;
-	text-align:center;
-}
-#itemShop>div {
-	display:inline-block;
-	border-bottom:0px solid #000;
-	padding:7px 8px 9px 8px;
-}*/
-#sectionRight
-{
-	height:100%;
-	position:absolute;
-	top:0px;
-	right:0px;
-	overflow-x:hidden;
-	overflow-y:hidden;
-	background:rgba(0,0,0,0);
-}
-#meadow {
-	height:150px;
-	width:150px;
-	left:0%;
-	top:5%;
-	position:relative;
-}
-#miniTree {
-	top:20%;
-	left:10px;
-	height:28;
-	width:28;
-	position:relative;
-}
-</style>
+<script src="javascript.js"></script>
+<link href="style.css" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <body>
+	<div id=sectionLeft>
+
+		<div id="sideBar">
+
+			<div> </div><br><br>
+
+			<div><img id="woodIcon" onclick="itemDescription(2);" src="https://i.imgur.com/X6Vz2uK.png";/></div>
+
+			<div><img id="moneyIcon" onclick="itemDescription(1);" src="https://i.imgur.com/szakyEf.png";/></div>
+
+			<div><img id="treeIcon" onclick="itemDescription(4);" src="https://i.imgur.com/ftxqAdP.png";/></div>
+
+			<div><img id="plank" class="small" onclick="itemDescription(6);" src="https://art.pixilart.com/4ea641860778c4b.png"></div>
+
+	    </div>
 
 
-	<div id="sectionMiddle">
+		<div id="sideBar2">
 
-		<div id="treeFrame">
+			<br><br>
+			<div><span id="woodAmount" onclick="itemDescription(3);">0</span></div><br>
+			<br><br>
+			<div><span id="moneyAmount" onclick="itemDescription(0);">0</span></div><br>
+			<br><br>
+			<div><span id="treeAmount" onclick="itemDescription(5);">0</span></div><br>
+			<br><br>
+			<div><span id="plankAmount" onclick="itemDescription(5);">0</span></div><br>
 
-			<div class="treeButton">
+		</div>
 
-				<img id="treeImage"; onclick="clickTree();" onmouseover="changeToAxe();" src="https://i.imgur.com/aGBT0tm.png"; draggable="false";/>
+		<div id="itemShop">
+			<br>
+			<br>
+		<div id="title">  SHOP </div>
+		<br>
+		<div id="TilesShop"> 
+
+			<div>Items</div>
+			<div class="tooltip">
+				<img src="https://i.imgur.com/fbAJUwR.png">
+				<div class="tooltiptext">
+					<u><b>Iron axe</b></u><br>
+					Price: 200$<br>
+					<div class="effect">+1 wood/tree</div>
+					<div style="text-align:right;"><i>"The name of this axe reminds you of a certain game you used to play."</i></div>
+				</div>
+			</div>
+
+			<div class="tooltip">
+				<img src="https://i.imgur.com/pbKUsP7.png">
+				<div class="tooltiptext">
+					<u><b>The blood of your enemies</b></u><br>
+					Price: 20 000$<br>
+					<div class="effect">Used for... certain things...</div>
+					<div style="text-align:right;"><i>"It smells."</i></div>
+				</div>
+			</div>
+
+			<br>
+
+			<div>Services</div>
+			<div class="tooltip" id="sawmillBuilding">
+				<img  id="small" onclick="shopBuy(1);" src="https://art.pixilart.com/dc446cc33dc1cf4.png">
+				<div class="tooltiptext">
+					<u><b>Sawmill</b></u><br>
+					Price: 3000$ & 200 logs<br>Upkeep: 1$ & 1 Log/plank<br>
+					<div class="effect">+1 plank/10 seconds</div>
+					<div class="description">Makes planks from wood that can be sold for better profit.</div>
+					<div style="text-align:right;"><i></i></div>
+				</div>
+			</div>
+
+			<div class="tooltip">
+				<img style="width:33px; height:48px;" onclick="showLumberjack(); showLumberjackUpgrades(); changeToAxe();" src="https://i.imgur.com/UCmm79r.png">
+				<div class="tooltiptext">
+					<u><b>Lumberjack</b></u><br>
+					Price: 200$, 3$/tree<br>
+					<div class="effect">Cuts trees for you</div>
+					<div class="description">A sturdy man wearing a checkerd shirt and jeans.</div>
+					<div style="text-align:right;"><i></i></div>
+				</div>
+			</div>
+
+			<br>
+
+			<div>Land</div>
+
+			<div id="sprucePatch" class="tooltip">
+				<img id="small" onclick="shopBuy(100);" src="https://i.imgur.com/k2PKntS.png">
+				<div class="tooltiptext">
+					<u><b>Spruce forest</b></u><br>
+					Price: 50$<br>
+					<div class="effect">+90 to 110 trees and a pice of land</div>
+					<div class="description">A patch of forest containing about 100 trees.</div>
+				</div>
+			</div>
+
+			<div class="switch"><p onclick="itemDescription(10);">Show upgrades</p></div>
 
 			</div>
 
 		</div>
 
+		<div id="upgradeShop">
+			<br>
+			<br>
+		<div id="title">  UPGRADES </div>
+		<br>
 
-		<div id="lumberjackFrame">
+			<div id="sprucePatch" class="tooltip">
+				<img id="small" onclick="shopBuy(100);" src="https://i.imgur.com/k2PKntS.png">
+				<div class="tooltiptext">
+					<u><b>Spruce forest</b></u><br>
+					Price: 50$<br>
+					<div class="effect">+90 to 110 trees and a pice of land</div>
+					<div class="description">A patch of forest containing about 100 trees.</div>
+				</div>
+			</div>
 
-			<div class="treeButton">
+			<div class="switch"><p onclick="itemDescription(20);">Show shop</p></div>
 
-				<img id="lumberjackImage"; onclick="clickTree();" src="https://i.imgur.com/UCmm79r.png"; draggable="false";/>
+		</div>
+
+	</div>
+
+
+	<div id="sectionMiddle">
+
+		<div id="menu">
+
+			<p></p><br><p>2</p><br><p>Test</p>
+
+		</div>
+
+		<div id="treeAndLumber">
+
+			<div id="treeFrame">
+
+				<div class="treeButton">
+
+					<img id="treeImage"; onclick="clickTree();" onmouseover="changeToAxe();" src="https://i.imgur.com/aGBT0tm.png"; draggable="false";/>
+
+				</div>
+
+			</div>
+
+
+			<div id="lumberjackFrame">
+
+				<div class="treeButton">
+
+					<img id="lumberjackImage"; onclick="clickTree();" src="https://i.imgur.com/UCmm79r.png"; draggable="false";/>
+
+				</div>
 
 			</div>
 
 		</div>
 	</div>
 
+
+	<div id="sectionRight2">
+
+		<div id="title"> BUILDINGS </div>
+
+			<div class="tooltip">
+				<img class="building" id="sawmill" src="https://art.pixilart.com/dc446cc33dc1cf4.png";/>
+				<div class="tooltiptext">
+					<u><b>Sawmill</b></u><br>
+					Upkeep: 1$ & 1 Log per Plank<br>
+					<div class="effect">+1 plank per 10 seconds</div>
+					<div class="description">2</div>
+					<div style="text-align:right;"><i>"Quote"</i></div>
+				</div>
+			</div>
+
+	</div>
+
 	<div id='sectionRight'>
 
 		<br><br>
-				<img id="meadow"; onclick="switchTree(0);" src="https://art.pixilart.com/9215fce7205b5db.png";/>
 
-				<img id="meadow"; onclick="switchTree(1);" src="https://art.pixilart.com/9215fce7205b5db.png";/>
-				<br>
-				<p>Click one of the<br> patches of land <br>to switch tree type<br> (These will be different)</p>
-<!-- 				<img id="meadow"; src="https://art.pixilart.com/9215fce7205b5db.png";/>
-
-				<img id="meadow"; src="https://art.pixilart.com/9215fce7205b5db.png";/>
-				<br>
-				<img id="meadow"; src="https://art.pixilart.com/9215fce7205b5db.png";/>
-
-				<img id="meadow"; src="https://art.pixilart.com/9215fce7205b5db.png";/> -->
+				<div id="title"> LAND </div>
+				<img class="meadow"; id="spruceForest" onclick="switchTree(1);" src="https://art.pixilart.com/9215fce7205b5db.png";/>
 
 	<!--Upgrades menu -->
 	<div id="upgradesContainer">
@@ -241,43 +201,10 @@ input[type="text"] {
 		      		<button onclick="upgrade(3);">Lumberjack superspeed</button><br>
 		  		</div>
 	  		<button onclick="upgrade(10);">Give tree</button><br>
+	  		<button onclick="upgrade(20);">Give money</button><br>
 	      <!-- <button onclick="upgrade(x);">x</button><br> -->
 	    </div>
 	</div>
-
-
-	</div>
-
-	<div id="sideBar">
-
-		<div> </div><br><br>
-
-		<div><img id="woodIcon;" onclick="itemDescription(2);" src="https://i.imgur.com/X6Vz2uK.png";/></div>
-
-		<div><img id="moneyIcon;" onclick="itemDescription(1);" src="https://i.imgur.com/szakyEf.png";/></div>
-
-		<div><img id="treeIcon;" onclick="itemDescription(4);" src="https://i.imgur.com/ftxqAdP.png";/></div>
-
-	</div>
-
-
-	<div id="sideBar2">
-		<br>
-
-		<div><p id="woodAmount" onclick="itemDescription(3);">0</p></div>
-		<br>
-
-		<div><p id="moneyAmount" unselectable="on" onclick="itemDescription(0);">0</p></div>
-		<br>
-		<br>
-
-		<div><p id="treeAmount" onclick="itemDescription(5);">10</p></div>
-	</div>
-
-
-	<div id="itemShop">
-		<div>  </div>
-
 
 	</div>
 
@@ -293,506 +220,7 @@ input[type="text"] {
 
 		<div><button id="showUpgrades" onclick="showUpgrades();">Show upgrades</button></div>
 
-		<div><button onclick="showLumberjack(); showLumberjackUpgrades(); changeToAxe();">Hire lumberjack</button></div>
-
 	</div>
 
 </body>
-</script>
-</body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-
-
-
-
-
-// var canvas = document.getElementById("meadowCanvas");
-// var ctx = canvas.getContext("2d");
-// ctx.fillStyle = "#33691E";
-// ctx.fillRect(10,10,5,5);
-// ctx.fillRect(15,10,5,5);
-// ctx.fillRect(20,10,5,5);
-// ctx.fillRect(15,15,5,5);
-// ctx.fillRect(15,5,5,5);
-
-
-var treeGenArray = ['https://i.imgur.com/S4qPteW.png', 'https://i.imgur.com/4XNkniK.png', 'https://i.imgur.com/ZzEWXuy.png'];
-function randomTree () {
-	var randomTreeGen = treeGenArray.splice(Math.floor(Math.random() * treeGenArray.length));
-}
-
-//THINGS TO ADD///////
-//achievements?
-////Using the description function, clicking every clickable object gives achievement "clicker of everything"
-//businessees and such to invest in
-//money currency
-//trees having to be bought with money
-////This means I have to make a way to limit the amount of trees depending on how many trees I cureently own
-////cut time can be shortened with better axes
-//Purchasing an acre of forest yelds a random amount of trees and a message is displayed saying this
-////Displaying acres with the trees showing
-//Make different variants to trees
-//Add fade out effect to last tree frame https://www.w3schools.com/jquery/eff_fadeout.asp
-//Golden wood
-////Has a low chance of dropping
-////Sappling from gold trees can be replanted in some sort of garden, or empty acres
-//Garden
-////Growing mechanism: random amount of time (withing a certin set amount of time) before next plant stage until fully grown
-////Tree growth starts off at literally 10 years until maturity. This is shortened by some kind of potion of whatever.
-//Something showing how much logs are worth
-//A way to pause and then start the lumberjack again
-//Item shop
-//////////////////////
-//ADDED FEATURES/////
-//Lumberjack that enters the frame and cuts the tree automatically
-//something that tells you what you got from every click (added this to show in the inout bar, might change.)
-//upgrades (got the geral things to work for this)
-//feature that makes cutting trees take longer
-//Pressing the "sell wood" button with an empty input field sells all wood (changed this to instead ask how mich wood to sell)
-/////////////////////
-// Used for delaying each axe swing
-var delayTime = 10; //usually 750, 0 when testing the game
-var canGo = true;
-// uUpgrade affected variables
-var woodValue = 2; // The value of each individual piece of wood. Increased using upgrades (not yet implemented)
-var treeAmount = 9; // Amount of trees owned, does not go down when a tree is cut down. /9 by default
-var shownTreeAmount = 10;
-var Lumberjack = false; //if true, disables clicking the tree
-// Currency variables and such
-var treeStage = 0;
-var woodCount = 0; // The amount of wood
-var splinters = 0; // The amount of splinters
-var treesCutDown = 0; // The amount of trees cut down (duh)
-var money = 0; // The amount of money
-var assurance = 0; 
-function showUpgrades() {
-    var x = document.getElementById("upgradesContainer");
-    console.log(x.style.display);
-    if (x.style.display === "block") {
-        x.style.display = "none";
-        document.getElementById("showUpgrades").innerHTML = "Show upgrades";
-    } else {
-        x.style.display = "block";
-        document.getElementById("showUpgrades").innerHTML = "Hide upgrades";
-    }
-}
-
-// Restrict input field to numbers (better this way ;-P)
-// Realized there wasn't really a need for it
-// function isNumberKey(evt){
-//     var charCode = (evt.which) ? evt.which : event.keyCode
-//     if (charCode > 31 && (charCode < 48 || charCode > 57))
-//         return false;
-//     return true;
-// }
-// Changes the cursor to an axe icon when hovering over tree
-
-function changeToAxe() {
-	if(Lumberjack == false) {
-	treeImage.style.cursor = "url('https://i.imgur.com/fbAJUwR.png'), auto";
-	} else {
-	treeImage.style.cursor = "";
-	}
-}
-
-// Used to delay... certain things... :)
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-
-// Booleans used for each tree type
-var oakTree = true;
-var spruceTree = false;
-
-//0 = Oak tree
-//1 = Spruce tree 
-function switchTree(treeNum) {
-	switch(treeNum){
-		case 0:
-			document.getElementById("treeImage").src = 'https://i.imgur.com/aGBT0tm.png';
-			oakTree = true;
-			spruceTree = false;
-			break;
-		case 1:
-			document.getElementById("treeImage").src = 'https://art.pixilart.com/3feb11b0ca2d069.png';
-			spruceTree = true;
-			oakTree = false;
-			break;
-	}
-}
-
-
-async function clickTree() {
-	if(treeAmount >= 0 && Lumberjack == false) {
-		if(treeStage == 0 && canGo) {
-			if(oakTree) {
-			document.getElementById('treeImage').src='https://i.imgur.com/9dYxQOs.png';
-			}
-			else if(spruceTree) {
-			document.getElementById('treeImage').src='https://i.imgur.com/BQMR8Uz.png';
-			}
-			treeStage++;
-			//document.getElementById("splinterAmount").innerHTML = splinters; //used later for splinters
-			canGo = false;
-			setTimeout(function () {
-	        	canGo = true;
-	        }, delayTime)
-		}
-		else if(treeStage == 1 && canGo) {
-			if(oakTree) {
-				document.getElementById('treeImage').src='https://i.imgur.com/uUXjx0k.png';
-			}
-			else if(spruceTree) {
-				document.getElementById('treeImage').src='https://i.imgur.com/uyMMK5D.png';
-			}
-			treeStage++;
-			canGo = false;
-			setTimeout(function () {
-	        	canGo = true;
-	        }, delayTime)
-		}
-		else if(treeStage == 2 && canGo) {
-			if(oakTree) {
-				document.getElementById('treeImage').src='https://i.imgur.com/RUmLW5d.png';
-			}
-			else if(spruceTree) {
-				document.getElementById('treeImage').src='https://i.imgur.com/a9TLifm.png';
-			}
-			treeStage++;
-			//document.getElementById("woodAmount").innerHTML = woodCount;
-			canGo = false;
-			setTimeout(function () {
-	        	canGo = true;
-	        }, delayTime)
-		}
-		else if(treeStage == 3 && canGo) {
-			if(oakTree) {
-				document.getElementById('treeImage').src='https://i.imgur.com/TLJzfH6.png';
-			}
-			else if(spruceTree) {
-				document.getElementById('treeImage').src='https://i.imgur.com/kFHe3gB.png';
-				treeStage += 2 // Skipping two stages because spruce wood takes shorter
-			}
-			treeStage++;
-			//document.getElementById("woodAmount").innerHTML = woodCount;
-			canGo = false;
-			setTimeout(function () {
-	        	canGo = true;
-	        }, delayTime)
-		}
-		else if(treeStage == 4 && canGo && spruceTree != true) {
-			document.getElementById('treeImage').src='https://i.imgur.com/9rr9haX.png';
-			treeStage++;
-			//document.getElementById("woodAmount").innerHTML = woodCount;
-			canGo = false;
-			setTimeout(function () {
-	        	canGo = true;
-	        }, delayTime)
-		}
-		else if(treeStage == 5 && canGo && spruceTree != true) {
-			document.getElementById('treeImage').src='https://i.imgur.com/ZRlTtkj.png';
-			treeStage++;
-			//document.getElementById("woodAmount").innerHTML = woodCount;
-			canGo = false;
-			setTimeout(function () {
-	        	canGo = true;
-	        }, delayTime)
-		}
-		else if(treeStage == 6 && canGo || treeStage == 7 && canGo) {
-			if(oakTree) {
-				var oakArray = ['https://i.imgur.com/YGtLRnA.png', 'https://i.imgur.com/5A2LW1e.png']; //makes the last image random
-				var randomOak = oakArray.splice(Math.floor(Math.random() * oakArray.length));
-				document.getElementById('treeImage').src = randomOak;
-			}
-			else if(spruceTree) {
-				var spruceArray = ['https://i.imgur.com/pT4aSQQ.png', 'https://i.imgur.com/7s14wWl.png'];
-				var randomSpruce = spruceArray.splice(Math.floor(Math.random() * spruceArray.length));
-				document.getElementById('treeImage').src = randomSpruce;
-			}
-			if(assurance == 0) {
-				woodCount += 5;
-				document.getElementById("woodAmount").innerHTML = woodCount;
-				assurance++;
-				treesCutDown++;
-				treeAmount--;
-				treeStage++;
-				shownTreeAmount--;
-				document.getElementById("treeAmount").innerHTML = shownTreeAmount;
-				howMuch();
-				canGo = false;
-				setTimeout(function () {
-	        		canGo = true;
-	        	}, delayTime)
-			} else {
-				if(oakTree) {
-					document.getElementById('treeImage').src='https://i.imgur.com/aGBT0tm.png';
-				}
-				else if(spruceTree) {
-					document.getElementById("treeImage").src = 'https://art.pixilart.com/3feb11b0ca2d069.png';
-				}
-				treeStage = 0;
-				assurance--;
-			}
-		}
-	} else {
-		if(Lumberjack == false) {
-		document.getElementById("inputAmount").value = "No more trees left!";
-		await sleep(3000);
-		document.getElementById("inputAmount").value = "";
-		}
-		else {
-		document.getElementById("inputAmount").value = "He prefers to work alone.";
-		await sleep(3000);
-		document.getElementById("inputAmount").value = "";
-		}
-	}
-}
-
-async function howMuch() {
-	document.getElementById("inputAmount").value = "+5 wood";
-	await sleep(1000);
-	document.getElementById("inputAmount").value = "";
-}
-
-// Reads the input value and subtracts it from "woodCount"
-// Only sells if there is enough wood
-var inputValue = document.getElementById("inputAmount").value;
-async function sellWood() {
-	var inputValue = document.getElementById("inputAmount").value;
-	var woodCountAmount = woodCount;
-	var inputSecure = woodCountAmount -= inputValue;
-	if(inputValue == "") {
-		document.getElementById("inputAmount").value = "How much wood? Type here.";
-	}
-	if(inputSecure >= 0) {
-		woodCount = inputSecure;
-		money += inputValue * woodValue;
-		document.getElementById("woodAmount").innerHTML = woodCount;
-		document.getElementById("moneyAmount").innerHTML = money;
-	} else 
-	document.getElementById("inputAmount").value = "Not enough wood!";
-	await sleep(1000);
-	document.getElementById("inputAmount").value = "";
-}
-// Allows you to use the "enter" key when writing sell amount
-document.onkeydown = function(e){
-    e = e || window.event;
-    var key = e.which || e.keyCode;
-    if(key===13){
- 		sellWood();
-    }
-}
-// Upgrades
-function upgrade(num) {
-	switch(num){
-		case 0:
-			break;
-		case 1:
-		    // Upgrade 1 = Better axe
-			delayTime = 600;
-			console.log(delayTime);
-			break;
-		case 2:
-			// Upgrade 2 = Faster Lumberjack
-			lJackSpeed = 300;
-			console.log(lJackSpeed);
-			break;
-		case 3:
-			// Upgrade 3 = Lumberjack superspeed
-			lJackSpeed = 50;
-			console.log(lJackSpeed);
-			break;
-		case 10:
-			// Upgrade ? = Give one wood (only for testing)
-			treeAmount++;
-			shownTreeAmount++;
-			document.getElementById("treeAmount").innerHTML = shownTreeAmount;
-			if(treeAmount <= 1) {
-				lumberJack();
-			}
-			break;
-		default:
-			console.log("error in upgrade function");
-			break;
-	}
-}
-async function showLumberjackUpgrades() {
-	if(treeStage == 0 || treeStage == 7) {
-	    var x = document.getElementById("lumberjackUpgrades");
-	    console.log(x.style.display);
-	    if (x.style.display === "block") {
-	        x.style.display = "none";
-	    } else {
-	        x.style.display = "block";
-	    }
-    } else {
-    	document.getElementById("inputAmount").value = "Finish the tree first!";
-    	await sleep(2000);
-		document.getElementById("inputAmount").value = "";
-    }
-}
-// Unhides the lumberjack if hidden
-// Hides him if he is not hidden
-// Calls the "lumberJack" function once to get it started
-function showLumberjack() {
-	if(treeStage == 0 || treeStage == 7) {
-	    var x = document.getElementById("lumberjackImage");
-	    console.log(x.style.display);
-	    console.log(Lumberjack);
-	    if (x.style.display === "block") {
-	        x.style.display = "none";
-	        Lumberjack = false;
-	    } else {
-	        x.style.display = "block";
-	        Lumberjack = true;
-	        lumberJack();
-	    }
-	}
-}
-
-
-var lJackSpeed = 600; // The initial speed of the lumberjack
-var lJackTreeStage = 1; // The stage of the tree, goes up for every hit from the lumberjack. Is reset for every tree.
-// Lumberjack animation and tree animation
-// Recursion :O
-async function lumberJack() {
-	if(treeStage == 0 || treeStage == 7) {
-		// Variables used to modify the lumberjack's speed
-		var lJackSpeed2 = lJackSpeed;
-		var lJackSpeedHalf = lJackSpeed2/2
-		var lJackSpeedHalf2 = lJackSpeedHalf
-		var lJackSpeedQuart = lJackSpeed2/2
-		// Gets the class that dictates the lumberjac's position and allows the funcion to modify it
-		var x = document.getElementById("lumberjackImage");
-		if(Lumberjack == true && treeAmount > -1 && lJackTreeStage < 7) {
-			await sleep(lJackSpeed);
-			document.getElementById('lumberjackImage').src='https://i.imgur.com/YsM2zaK.png';
-			await sleep(lJackSpeed);
-			document.getElementById('lumberjackImage').src='https://i.imgur.com/2KsEfXR.png';
-			await sleep(lJackSpeed);
-			document.getElementById('lumberjackImage').src='https://i.imgur.com/nUiwJEV.png';
-			if(lJackTreeStage == 1) {
-				if(oakTree) { // Checks what tree is currently displayed and changes accordingly
-					document.getElementById('treeImage').src='https://i.imgur.com/wsftoQ8.png';
-				} 
-				else if(spruceTree) {
-					document.getElementById('treeImage').src='https://i.imgur.com/BQMR8Uz.png';
-				}
-				lJackTreeStage++;
-				await sleep(lJackSpeedHalf);
-				x.style.left = "20px"; // Moves the lumberajack
-				await sleep(lJackSpeedHalf);
-				lumberJack(); // Calls the function again
-			}
-			else if(lJackTreeStage == 2) {
-				if(oakTree) {
-					document.getElementById('treeImage').src='https://i.imgur.com/ta996SE.png';
-				}
-				else if(spruceTree) {
-					document.getElementById('treeImage').src='https://i.imgur.com/uyMMK5D.png';
-				}
-				lJackTreeStage++;
-				await sleep(lJackSpeedHalf);
-				x.style.left = "30px";
-				await sleep(lJackSpeedHalf);
-				lumberJack();
-			}
-			else if(lJackTreeStage == 3) {
-				if(oakTree) {
-					document.getElementById('treeImage').src='https://i.imgur.com/mQMzfS8.png';
-				}
-				else if(spruceTree) {
-					document.getElementById('treeImage').src='https://i.imgur.com/a9TLifm.png';
-				}
-				lJackTreeStage++;
-				await sleep(lJackSpeedHalf);
-				x.style.left = "45px";
-				await sleep(lJackSpeedHalf);
-				lumberJack();
-			}
-			else if(lJackTreeStage == 4) {
-				if(oakTree) {
-					document.getElementById('treeImage').src='https://i.imgur.com/3WXtrGz.png';
-				}
-				else if(spruceTree) {
-					document.getElementById('treeImage').src='https://i.imgur.com/kFHe3gB.png';
-				}
-				lJackTreeStage++;
-				await sleep(lJackSpeedHalf);
-				x.style.left = "60px";
-				await sleep(lJackSpeedHalf);
-				lumberJack();
-			}
-			else if(lJackTreeStage == 5) {
-				if(oakTree) {
-					document.getElementById('treeImage').src='https://i.imgur.com/mbMZysM.png';
-				}
-				else if(spruceTree) {
-					document.getElementById('treeImage').src='https://i.imgur.com/pT4aSQQ.png';
-				}
-				lJackTreeStage = 1;
-				shownTreeAmount--;
-				treeAmount--;
-				woodCount += 5;
-				document.getElementById("treeAmount").innerHTML = shownTreeAmount;
-				document.getElementById("woodAmount").innerHTML = woodCount;
-				await sleep(lJackSpeedQuart);
-				x.style.left = "25px";
-				await sleep(lJackSpeedQuart);
-				x.style.left = "5px";
-				await sleep(500);
-				if(oakTree) {
-					document.getElementById('treeImage').src='https://i.imgur.com/aGBT0tm.png';
-				}
-				else if(spruceTree) {
-					document.getElementById("treeImage").src = 'https://art.pixilart.com/3feb11b0ca2d069.png';
-				}
-				lumberJack();
-			}
-		} else {
-			document.getElementById('lumberjackImage').src='https://i.imgur.com/UCmm79r.png';
-		}
-	}
-}
-// Clicking on certain elements will trigger a description in the input field
-async function itemDescription(item) {
-		switch(item){
-		case 0:
-	    	document.getElementById("inputAmount").value = "Current amount of money.";
-	    	await sleep(2000);
-			document.getElementById("inputAmount").value = "";
-			break;
-		case 1:
-	    	document.getElementById("inputAmount").value = "Money";
-	    	await sleep(2000);
-			document.getElementById("inputAmount").value = "";
-			break;
-		case 2:
-	    	document.getElementById("inputAmount").value = "Logs";
-	    	await sleep(2000);
-			document.getElementById("inputAmount").value = "";
-			break;
-		case 3:
-	    	document.getElementById("inputAmount").value = "Current amount of logs.";
-	    	await sleep(2000);
-			document.getElementById("inputAmount").value = "";
-			break;
-		case 4:
-	    	document.getElementById("inputAmount").value = "Trees";
-	    	await sleep(2000);
-			document.getElementById("inputAmount").value = "";
-			break;
-		case 5:
-	    	document.getElementById("inputAmount").value = "Current amount of trees.";
-	    	await sleep(2000);
-			document.getElementById("inputAmount").value = "";
-			break;
-		default:
-			console.log("error in description function");
-			break;
-	}
-}
-
-</script>
+</html>
