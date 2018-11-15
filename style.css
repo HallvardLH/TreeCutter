@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<style>
 *{
 	font-family: Consolas;
 }
@@ -149,10 +154,12 @@ input[type="text"] {
 	height:100%;
 	position:absolute;
 	top:0px;
-	right:30px;
+	right:0px;
 	overflow-x:hidden;
 	overflow-y:hidden;
 	background:rgba(0,0,0,0);
+	display:none;
+	border-left:2px inset;
 }
 
 .meadow {
@@ -202,6 +209,7 @@ input[type="text"] {
 	width:60%;
 	color:#ccc;
 	text-align:center;
+	background:url(https://storage.googleapis.com/webdesignledger.pub.network/LaT/edd/2016/02/subtle-light-grunge-texture-17.jpg) repeat-y bottom;
 }
 
 #itemShop>div, #upgradeShop<div {
@@ -217,9 +225,14 @@ input[type="text"] {
 	text-align:center;
 }
 
-#small, .small {
+#small, .small  {
 	height:48px;
 	width:48px;
+}
+
+#itemShop #small {
+	/*border:4px solid;
+	border-image:url(https://i.imgur.com/8Qdl11x.png) 1 round;*/
 }
 
 .tooltip {
@@ -253,23 +266,26 @@ input[type="text"] {
 	visibility: hidden;
 }
 
-.tooltipPrice {
-	text-align:right;
-}
-
 .building {
 	height:180px;
 	width:180px;
 }
 
 #sectionRight2 {
-	height:80%;
+	height:100%;
 	position:absolute;
-	top:40px;
-	right:250px;
+	right:260px;
 	overflow-x:hidden;
-	overflow-y:hidden;
+	overflow-y:scroll;
 	background:rgba(0,0,0,0);
+	border-left:2px solid black;
+	border-right:2px solid black;
+	text-align:center;
+	display:none;
+}
+
+#sectionRight2 #title {
+	margin-top:40px;
 }
 
 .description {
@@ -291,6 +307,26 @@ input[type="text"] {
 }
 
 .switch {
-	position:relative;
-	top:40%;
+	background:brown;
+}
+
+#sawmillInfo {
+	width:170px;
+	font-size:12px;
+}
+
+#sawmillBar {
+    height: 20px;
+    width: 0%;
+	background-color:white;
+}
+
+#sawmillBar2 {
+    height: 20px;
+    width: 0%;
+    background-color: #555;
+}
+
+#sawmillUpgrade1 {
+	display:none;
 }
