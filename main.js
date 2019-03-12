@@ -73,6 +73,8 @@
 
 var oakWoodAmount = 0;
 var spruceWoodAmount = 0;
+var oakWoood = 0;
+var spruceWood = 0;
 
 /*=====================================================================================
 									STOCK MARKET
@@ -1185,8 +1187,6 @@ function axeTree() {
 	}
 }
 
-var oakWoood = 0;
-var spruceWood = 0;
 function tree() {
 if(treeStage == 0 && canGo) {
 			if(oakTree) {
