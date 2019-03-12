@@ -429,7 +429,7 @@ var axeUpgradeUnlocked = 0;
 
 //$(window).on('load', 
 async function loadUp() {
- 	if(localStorage.money) { // If localStorage.money has been set the game is guaranteed to have been saved
+ 	if(localStorage.length > 10) { // If localStorage.money has been set the game is guaranteed to have been saved
 		money = Number(localStorage.money);
 		oakWood = Number(localStorage.oak);
 		spruceWood = Number(localStorage.spruce);
