@@ -494,7 +494,7 @@ async function loadUp() {
 
 // Saves when exiting or refreshing
 window.onbeforeunload = function exitSave() {
-	save();
+	//save();
 };
 
 // Save game manually
