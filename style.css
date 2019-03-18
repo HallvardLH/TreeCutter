@@ -94,7 +94,7 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp */
   background-image: url(https://i.pinimg.com/originals/ef/28/65/ef286539b2537c1605a9c215ac28a4a0.jpg) 
   height: 900px;
   position: absolute;
-  right: -550px;
+  right: 0px;
   top: 0;
   transition: right linear .2s;
   padding: 0px;
@@ -129,7 +129,7 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp */
 	left:0px;
 	top:0px;
 	height:100%;
-	width:60px;
+	width:75px;
 	background:url(https://i.imgur.com/dD6dGTd.jpg) repeat-y bottom;
 	color:#ccc;
 }
@@ -146,10 +146,10 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp */
 	border-left: 2px inset black;
 	border-right: 2px inset black;
 	position:absolute;
-	left:60.3px;
+	left:74.3px;
 	top:0px;
 	height:100%;
-	width:90px;
+	width:75px;
 	background:url(https://i.imgur.com/dD6dGTd.jpg) repeat-y bottom;
 	color:#ccc;
 	text-align:center;
@@ -384,7 +384,7 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp */
 	color:#ea842a;
 }
 
-.meadow, #sawmill, #plankAmount, #ownedItems, #Marketsection, #sawmillInputs, #lumberjackInputs, #sectionRight3, #stocksSection {
+.meadow, #sawmill, #plankAmount, #ownedItems, #Marketsection, #sawmillInputs, #lumberjackInputs, #sectionRight3, #stocksSection, #landSection {
 	display:none;
 }
 
@@ -496,7 +496,7 @@ Thanks to https://www.w3schools.com/howto/howto_css_image_overlay.asp */
 	height:24px;
 }
 
-#ownedItems>button, #itemShop>button, #Marketsection>button, #stocksSection>button {
+#ownedItems>button, #itemShop>button, #Marketsection>button, #stocksSection>button, #infoSection>button, #landSection>button {
 	color:white;
 	background-color:brown;
 	width:50%;
@@ -508,7 +508,7 @@ Thanks to https://www.w3schools.com/howto/howto_css_image_overlay.asp */
 	width:48%;
 }
 
-#ownedItems>button:hover, #itemShop>button:hover, #Marketsection>button:hover, #stocksSection>button:hover {
+#ownedItems>button:hover, #itemShop>button:hover, #Marketsection>button:hover, #stocksSection>button:hover, #infoSection>button:hover, #landSection>button:hover {
 	transform: scale(1.05);
 }
 

@@ -17,13 +17,13 @@
 		<div id="sideBar">
 
 			<div> </div><br><br>
-			<div><img id="moneyIcon" onclick="itemDescription(1);" src="https://i.imgur.com/szakyEf.png";/></div>
+			<div><img id="moneyIcon" class="small" onclick="itemDescription(1);" src="images/money.png";/></div>
 
 			<div><img id="oakWoodIcon" class="small" onclick="itemDescription(2), switchResourceType(0);" src="images/oakLog.png"/></div>
 
-			<div><img id="spruceWoodIcon" class="small" onclick="itemDescription(5), switchResourceType(1);" src="https://i.imgur.com/X6Vz2uK.png";/></div>
+			<div><img id="spruceWoodIcon" class="small" onclick="itemDescription(5), switchResourceType(1);" src="images/spruceLog.png";/></div>
 
-			<div><img id="plank" class="small" onclick="itemDescription(6), switchResourceType(2);;" src="https://art.pixilart.com/4ea641860778c4b.png"></div>
+			<div><img id="plank" class="small" onclick="itemDescription(6), switchResourceType(2);;" src="images/plank.png"></div>
 
 	    </div>
 
@@ -52,13 +52,13 @@
 		
 		<div id="TilesShop"> 
 
-			<div style="background:#633921;">Services</div>
+			<div style="background:#633921;">Business</div>
 			<br>
 			<div class="tooltip" id="sawmillBuilding">
-				<img  id="small" onclick="shopBuy(1);" src="https://art.pixilart.com/dc446cc33dc1cf4.png">
+				<img  id="small" onclick="shopBuy(1);" src="images/sawmill.png">
 				<div class="tooltiptext">
 					<u><b>Sawmill</b></u><br>
-					Price: 3000$ & 200 logs<br>Upkeep: 1$ & 1 Log/plank<br>
+					Price: <font color="#11ad14">3000$ & 200 logs</font>
 					<div class="effect">+1 plank/10 seconds</div>
 					<div class="description">Makes planks from wood that can be sold for better profit.</div>
 					<div style="text-align:right;"><i></i></div>
@@ -66,7 +66,7 @@
 			</div>
 
 			<div class="tooltip">
-				<img id="lumImage" style="width:33px; height:48px;" onclick="shopBuy(2);" src="https://i.imgur.com/UCmm79r.png">
+				<img id="lumImage" style="width:33px; height:48px;" onclick="shopBuy(2);" src="images/lumberjackIdle.png">
 				<div class="tooltiptext">
 					<u><b>Lumberjack</b></u><br>
 					0.2 wood/second for 0.1 money/second<br>
@@ -81,12 +81,21 @@
 			<div style="background:#633921;">Land</div>
 			<br>
 			<div id="sprucePatch" class="tooltip">
-				<img id="small" onclick="shopBuy(0);" src="https://art.pixilart.com/88f16d2357f5834.png">
+				<img id="small" onclick="shopBuy(0);" src="images/spruceTile.png">
 				<div class="tooltiptext">
 					<u><b>Spruce forest</b></u><br>
-					Price: 50$<br>
-					<div class="effect">+90 to 110 trees and a pice of land</div>
-					<div class="description">A patch of forest containing about 100 trees.</div>
+					Price: <font color="#11ad14">500$</font><br>
+					<div class="effect">+900 to 1100 trees and a pice of land</div>
+					<div class="description">A patch of forest containing about 1000 trees.</div>
+				</div>
+			</div>
+			<div class="tooltip">
+				<img id="small" onclick="itemDescription(7);" src="images/earth.png">
+				<div class="tooltiptext">
+					<u><b>Earth</b></u><br>
+					Price: <font color="#11ad14">5,000,000,000,000,000$</font><br>
+					<div class="effect">+1,040,000,000,000 trees</div>
+					<div class="description">A spherical plot of land containing about 1,04 trillion trees but mostly useless water.<font color="#11ad14"><section id="Population"></section></font></div>
 				</div>
 			</div>
 
@@ -166,7 +175,7 @@
 				<div class="treeButton">
 
 
-					<img id="clickTreeImage"; onmousedown="clickTree();" onmouseup="" onmouseover="changeToAxe();" src="https://i.imgur.com/aGBT0tm.png"; draggable="false";/>
+					<img id="clickTreeImage"; onmousedown="clickTree();" onmouseup="" onmouseover="changeToAxe();" src="images/oakTree.png"; draggable="false";/>
 
 				</div>
 
@@ -178,23 +187,35 @@
 	<div id='sectionRight'>
 
 		<br><br>
-
+			<div id="landSection">
 				<div id="title"> LAND </div>
+				<button id="shopBtn" onclick="infoSwitch(10);">Info</button><button id="ownedBtn" onclick="infoSwitch(20);">Land</button>
 
 				<div id="oakLandContainer">
-					<img class=""; id="oakForest" onclick="switchTree(1);" src="https://art.pixilart.com/9215fce7205b5db.png";/>
+					<img class=""; id="oakForest" onclick="switchTree(1);" src="images/oakTile.png";/>
 					<div id="oakLandInfoContainer"></div>
 				</div>
 
 				<div id="spruceLandContainer">
-					<img class="meadow"; id="spruceForest" onclick="switchTree(2);" src="https://art.pixilart.com/88f16d2357f5834.png";/>
+					<img class="meadow"; id="spruceForest" onclick="switchTree(2);" src="images/spruceTile.png";/>
 					<div id="spruceLandInfoContainer"></div>
 				</div>
+			</div>
 
+			<div id="infoSection" style="text-align:center";>
 				<div id="title"> INFO </div>
-				<div id="messageBox" style="width:147px; font-size:12px; text-align:center; background-color:#8c4e4e; color:white;">
-				<image id="info" onclick="help();" style="height: 26px; width: 28px;" src="https://art.pixilart.com/6f466c66a5a60c0.png">
+				<button id="shopBtn" onclick="infoSwitch(10);">Info</button><button id="ownedBtn" onclick="infoSwitch(20);">Land</button>
+				<image id="info" onclick="help();" style="height: 26px; width: 28px;" src="images/info.png">
+				<div style="background:#633921; color:white;">Stats</div>
+				<div id="messageBox" style="width:147px; font-size:12px; height:100px; text-align:center; background-color:#8c4e4e; color:white;">
+					<div id="WoodPerTree" style="color:#11ad14;"></div>
+					<div id="Pollution" style="color:blue;">Pollution: 0</div>
+
+				</div>
+				<div style="background:#633921; color:white;">General info</div>
+				<div id="messageBox" style="width:147px; font-size:12px; height:1000px; text-align:center; background-color:#8c4e4e; color:white;">
 				<section id="messageSection"></section>
+			</div>
 				
 				</div>
 
@@ -208,26 +229,28 @@
 			<div>Lumberjack</div>
 			<div id="lumberjackWoodPerSecond" style="font-size: 9px; color: green";>Per second</div>
 			<div id="lumberjackMoneyPerSecond" style="font-size: 9px; color: red";>Per second</div>
+			<div id="lumberjackTreePerSecond" style="font-size: 9px; color: red";>Per second</div>
 			<div id="ljMoneyAmount">Money: 0$</div>
 			<div><input id="ljMoneyInput"; onkeypress="return isNumberKey(event)";></div>
 
 			<div id="ljTreeAmount"></div>
-			<div id="ljOakTreeAmount"></div>
-			<div id="ljSpruceTreeAmount"></div>
 			<div><button style="color:black;" id="ljChooseTile"; onclick="lumberjackChooseTile();">Choose land</button></div>
 			<img id="chosenOakTile" style="height:110px; width:110px;" src="images/spruceTile.png">
 			<img id="chosenSpruceTile" style="height:110px; width:110px;" src="images/oakTile.png">
-			<button onclick="withdrawWood('sell');">Sell all</button>
-			<button onclick="withdrawWood('withdraw');">Withdraw</button>
+			<!-- <button onclick="withdrawWood('sell');">Sell all</button>
+			<button onclick="withdrawWood('withdraw');">Withdraw</button> -->
 		</div>
 
 		<div id="sawmillInputs">
 			<div>Sawmill</div>
-			<div id="sawmillPerSecond" style="font-size: 9px; color: green";>Per second</div>
+			<div id="sawmillPlanksPerSecond" style="font-size: 9px; color: green";>Per second</div>
 			<div id="smillMoneyAmount">Money: 0$</div>
+			<div id="sawmillMoneyPerSecond" style="font-size: 9px; color: red";>Per second</div>
 			<div><input id="smillMoneyInput"; onkeypress="return isNumberKey(event)";></div>
 
-			<div id="smillWoodAmount">Wood: 0</div>
+			<div id="smillOakAmount"></div>
+			<div id="smillSpruceAmount"></div>
+			<div id="sawmillWoodPerSecond" style="font-size: 9px; color: red";>Per second</div>
 			<div><input id="smillWoodInput"; onkeypress="return isNumberKey(event)";></div>
 
 			<div id="smillPlankAmount">Planks: 0</div>
@@ -251,7 +274,7 @@
 				<div class="treeButton">
 
 
-					<img id="treeImage"; src="https://i.imgur.com/aGBT0tm.png"; draggable="false";/>
+					<img id="treeImage"; src="images/oakTree.png"; draggable="false";/>
 
 				</div>
 
@@ -262,7 +285,7 @@
 
 				<div class="treeButton">
 
-					<img id="lumberjackImage"; src="https://i.imgur.com/UCmm79r.png"; draggable="false";/>
+					<img id="lumberjackImage"; src="images/lumberjackIdle.png"; draggable="false";/>
 
 				</div>
 
@@ -275,7 +298,7 @@
 	</div>
 
 		<div class="sawmillContainer">
-			<img onclick="hideInput('sawmillInputs');" class="building" id="sawmill" src="https://art.pixilart.com/dc446cc33dc1cf4.png";/>
+			<img onclick="hideInput('sawmillInputs');" class="building" id="sawmill" src="images/sawmill.png";/>
 			<!-- <div id="sawmillBar2"></div> -->
 			<div id="sawmillBar"></div> 
 			<div id="middle">
@@ -290,11 +313,7 @@
 	<!--Upgrades menu -->
 	<div id="upgradesContainer">
 	    <div class="menu-drawer">
-	        <button onclick="upgrade(1);">Upgrade axe</button><br>
-		      	<div id="lumberjackUpgrades">
-		      		<button onclick="upgrade(2);">Faster lumberjack</button><br>
-		      		<button onclick="upgrade(3);">Lumberjack superspeed</button><br>
-		  		</div>
+		    <button onclick="upgrade(3);">Give oak</button><br>
 	  		<button onclick="upgrade(10);">Give tree</button><br>
 	  		<button onclick="upgrade(20);">Give money</button><br>
 	      <!-- <button onclick="upgrade(x);">x</button><br> -->
@@ -305,9 +324,9 @@
 
 
 	<div id="topBar">
-		<div>Wood Cutter <span style="color:#11ad14">v. 0.09</span></div>
+		<div>Wood Cutter<span style="color:#11ad14">v. 0.091</span></div>
 
-		<div><a style="color:#99b3ff" href="https://www.pixilart.com/dwastelander/gallery" target="_blank">Pixilart</a></div>
+		<!-- <div><a style="color:#99b3ff" href="https://www.pixilart.com/dwastelander/gallery" target="_blank">Pixilart</a></div> -->
 
 		<div class="dropdown">
   			<button class="dropbtn">Choose tool</button>
@@ -321,7 +340,6 @@
 
 		<div><button id="saveGame">Save Game</button></div>
 		<div></div>
-		<div id="WoodPerTree" style="color:#11ad14;"></div>
 		<div></div>
 		<div></div>
 		<div></div>
