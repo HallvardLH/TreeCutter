@@ -21,7 +21,7 @@ body {
 }
 
 #sectionRight3 input {
-    width: 97%;
+    width: 96%;
     color: black;
     background:#a8a8a8;
     border-color:gray;
@@ -32,6 +32,12 @@ body {
 	width:100%;
     background:#a8a8a8;
     border-color:gray;
+    color:white;
+	background-color:brown;
+}
+
+#sectionRight3 button:hover {
+	transform: scale(1.05);
 }
 
 /*Thanks to w3schools for drop down code
@@ -347,7 +353,7 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp */
 #sectionRight2 {
 	height:100%;
 	position:absolute;
-	right:260px;
+	right:262px;
 	overflow-x:hidden;
 	overflow-y:scroll;
 	background:rgba(0,0,0,0);
@@ -384,7 +390,7 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp */
 	color:#ea842a;
 }
 
-.meadow, #sawmill, #plankAmount, #ownedItems, #Marketsection, #sawmillInputs, #lumberjackInputs, #sectionRight3, #stocksSection, #landSection {
+.meadow, #sawmill, #planksAmount, #ownedItems, #Marketsection, #sawmillInputs, #lumberjackInputs, #sectionRight3, #stocksSection, #landSection {
 	display:none;
 }
 
@@ -496,7 +502,7 @@ Thanks to https://www.w3schools.com/howto/howto_css_image_overlay.asp */
 	height:24px;
 }
 
-#ownedItems>button, #itemShop>button, #Marketsection>button, #stocksSection>button, #infoSection>button, #landSection>button {
+#ownedItems>button, #itemShop>button, #Marketsection>button, #stocksSection>button, #infoSection>button, #landSection>button{
 	color:white;
 	background-color:brown;
 	width:50%;

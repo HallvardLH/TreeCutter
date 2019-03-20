@@ -33,11 +33,11 @@
 			<br><br><br>
 			<div><span id="moneyAmount" onclick="itemDescription(0);">0</span></div><br>
 			<br>
-			<div><span id="oakAmount" onclick="itemDescription(3);">0</span></div><br>
+			<div><span id="oakWoodAmount" onclick="itemDescription(3);">0</span></div><br>
 			<br><br>
-			<div><span id="spruceAmount" onclick="itemDescription(3);">0</span></div><br>
+			<div><span id="spruceWoodAmount" onclick="itemDescription(3);">0</span></div><br>
 			<br><br>
-			<div><span id="plankAmount" onclick="itemDescription(10000);">0</span></div><br>
+			<div><span id="planksAmount" onclick="itemDescription(10000);">0</span></div><br>
 
 		</div>
 
@@ -230,13 +230,14 @@
 			<div id="lumberjackWoodPerSecond" style="font-size: 9px; color: green";>Per second</div>
 			<div id="lumberjackMoneyPerSecond" style="font-size: 9px; color: red";>Per second</div>
 			<div id="lumberjackTreePerSecond" style="font-size: 9px; color: red";>Per second</div>
-			<div id="ljMoneyAmount">Money: 0$</div>
+			<div><img style="height:36px; width:36px;" src="images/money.png"><section id="ljMoneyAmount">0</section></div>
 			<div><input id="ljMoneyInput"; onkeypress="return isNumberKey(event)";></div>
 
 			<div id="ljTreeAmount"></div>
-			<div><button style="color:black;" id="ljChooseTile"; onclick="lumberjackChooseTile();">Choose land</button></div>
+			<div><button id="ljChooseTile"; onclick="lumberjackChooseTile();">Choose land</button></div>
 			<img id="chosenOakTile" style="height:110px; width:110px;" src="images/spruceTile.png">
 			<img id="chosenSpruceTile" style="height:110px; width:110px;" src="images/oakTile.png">
+			<button id="ownedBtn" onclick="buildingSwitch(20);">Sawmill</button>
 			<!-- <button onclick="withdrawWood('sell');">Sell all</button>
 			<button onclick="withdrawWood('withdraw');">Withdraw</button> -->
 		</div>
@@ -244,18 +245,20 @@
 		<div id="sawmillInputs">
 			<div>Sawmill</div>
 			<div id="sawmillPlanksPerSecond" style="font-size: 9px; color: green";>Per second</div>
-			<div id="smillMoneyAmount">Money: 0$</div>
+			<div><img style="height:36px; width:36px;" src="images/money.png"><section id="smillMoneyAmount">0</section></div>
 			<div id="sawmillMoneyPerSecond" style="font-size: 9px; color: red";>Per second</div>
 			<div><input id="smillMoneyInput"; onkeypress="return isNumberKey(event)";></div>
-
-			<div id="smillOakAmount"></div>
-			<div id="smillSpruceAmount"></div>
+			<div><img style="height:36px; width:36px;" src="images/oakLog.png"><div><section id="smillOakAmount">0</section></div>
+			<img style="height:36px; width:36px;" src="images/spruceLog.png"><section id="smillSpruceAmount">0</section></div>
+<!-- 			<div id="smillOakAmount"></div>
+			<div id="smillSpruceAmount"></div> -->
 			<div id="sawmillWoodPerSecond" style="font-size: 9px; color: red";>Per second</div>
 			<div><input id="smillWoodInput"; onkeypress="return isNumberKey(event)";></div>
 
 			<div id="smillPlankAmount">Planks: 0</div>
 			<button onclick="withdrawPlanks('sell')">Sell all</button>
 			<button onclick="withdrawPlanks('withdraw')">Withdraw</button>
+			<button id="shopBtn" onclick="buildingSwitch(10);">Lumberjack</button>
 
 		</div>
 
@@ -267,7 +270,7 @@
 		<div id="title"> BUSINESS </div>
 		<div id="sawmillPerSecond" style="font-size: 11px; color: green";>Click a business to<br> open its input panel</div>
 
-		<div id="treeAndLumber" style="margin-top:-30px; display:none;" onclick="hideInput('lumberjackInputs');">
+		<div id="treeAndLumber" style="margin-top:-30px; display:none;">
 
 			<div id="treeFrame">
 
@@ -298,7 +301,7 @@
 	</div>
 
 		<div class="sawmillContainer">
-			<img onclick="hideInput('sawmillInputs');" class="building" id="sawmill" src="images/sawmill.png";/>
+			<img class="building" id="sawmill" src="images/sawmill.png";/>
 			<!-- <div id="sawmillBar2"></div> -->
 			<div id="sawmillBar"></div> 
 			<div id="middle">
@@ -324,7 +327,7 @@
 
 
 	<div id="topBar">
-		<div>Wood Cutter<span style="color:#11ad14">v. 0.091</span></div>
+		<div>Wood Cutter <span style="color:#11ad14">v. 0.091</span></div>
 
 		<!-- <div><a style="color:#99b3ff" href="https://www.pixilart.com/dwastelander/gallery" target="_blank">Pixilart</a></div> -->
 

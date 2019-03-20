@@ -1,5 +1,3 @@
-
-
 //THINGS TO ADD///////
 //achievements?
 ////Using the description function, clicking every clickable object gives achievement "clicker of everything"
@@ -76,7 +74,6 @@
 
 //Lumberjacks are assigened to land, rather than trees being given to them
 //////////////////
-// newUpgrade('name', '"image"', 'info', 'effect', 'price', 'id' 'location')
 
 
 var oakWoodAmount = 0;
@@ -104,13 +101,20 @@ var my_TSLA_object = new TSLA();
 										INPUTS
 =======================================================================================*/
 
-function hideInput(building) {
-	showItem(building);
-	if(building == 'sawmillInputs') {
-		hideItem('lumberjackInputs');
-	}
-	if(building == 'lumberjackInputs') {
-		hideItem('sawmillInputs');
+function buildingSwitch(item) {
+	hideItem('lumberjackInputs');
+	hideItem('sawmillInputs');
+switch(item){
+		case 10:
+			showItem('lumberjackInputs');
+			break;
+		case 20:
+			showItem('sawmillInputs');
+			break;
+		case 30:
+			break;
+		case 40:
+			break;
 	}
 }
 
@@ -178,10 +182,10 @@ async function sellWood() {
 		if(resourceType == 'planks' || resourceType == 'oak' || resourceType == 'spruce') { 
 			messageDisplay('Sold ' + inputValue + ' ' + resourceType + ' for ' + s + '$');
 		}
-		document.getElementById("oakAmount").innerHTML = Math.ceil(oakWood); // Updates displayed values
-		document.getElementById("spruceAmount").innerHTML = Math.ceil(spruceWood);
-		document.getElementById("moneyAmount").innerHTML = Math.ceil(money);
-		document.getElementById("plankAmount").innerHTML = Math.floor(planks);
+		//document.getElementById("oakAmount").innerHTML = Math.ceil(oakWood); // Updates displayed values
+		//document.getElementById("spruceAmount").innerHTML = Math.ceil(spruceWood);
+		//document.getElementById("moneyAmount").innerHTML = Math.ceil(money);
+		//document.getElementById("plankAmount").innerHTML = Math.floor(planks);
 		document.getElementById("inputAmount").value = "";
 	} else
 	notEnough();
@@ -197,7 +201,7 @@ function lumberjackInputMoney() {
 		ljMoney += input;
 		money -= input;
 	}
-	document.getElementById("ljMoneyAmount").innerHTML = 'Money: ' + ljMoney + '$';
+	//document.getElementById("ljMoneyAmount").innerHTML = 'Money: ' + ljMoney + '$';
 	document.getElementById("ljMoneyInput").value = "";
 }
 
@@ -258,18 +262,10 @@ var smillBirch = 0;
 function sawmillInputWood() {
 	var inputValue = document.getElementById("smillWoodInput").value;
 	if(resourceType == "oak") {
-		if(smillSpruce == 0) {
-			var s = oakWood;
-		} else {
-			var s = 'cancel';
-		}
+		var s = oakWood;
 	}
 	if(resourceType == "spruce") {
-		if(smillSpruce == 0) {
-			var s = spruceWood;
-		} else {
-			var s = 'cancel';
-		}
+		var s = spruceWood;
 	}
 	if(s != 'cancel') {
 		var input = parseInt(inputValue)
@@ -303,7 +299,7 @@ function withdrawPlanks(which) { // Choose between selling all planks or withdra
 	if(which == 'withdraw') {
 		smillPlanks -= Math.floor(p);
 		planks += Math.floor(p);
-		messageDisplay('Withdrew ' + Math.ceil(p) + ' planks');
+		//messageDisplay('Withdrew ' + Math.ceil(p) + ' planks');
 	}
 }
 
@@ -446,7 +442,6 @@ function sepia(id) {
     }
 }
 
-var axeUpgradeUnlocked = 0;
 /*=====================================================================================
 											SAVE
 =======================================================================================*/
@@ -535,10 +530,10 @@ async function loadUp() {
  		console.log('First time load');
  		messageDisplay("You inherit your father's plot of land. There's nothing except some boring oak trees on it. You decide to cut them down.")
  	}
- 	document.getElementById("plankAmount").innerHTML = Math.floor(planks);
+ 	document.getElementById("planksAmount").innerHTML = Math.floor(planks);
     document.getElementById("moneyAmount").innerHTML = Math.ceil(money);
-	document.getElementById("oakAmount").innerHTML = Math.ceil(oakWood);
-	document.getElementById("spruceAmount").innerHTML = Math.ceil(spruceWood);
+	document.getElementById("oakWoodAmount").innerHTML = Math.ceil(oakWood);
+	document.getElementById("spruceWoodAmount").innerHTML = Math.ceil(spruceWood);
 	if(resourceType == 'oak') {
 		outline("oakWoodIcon");
 	}
@@ -655,10 +650,10 @@ var woodCount = 0;
 var totalTreeAmount = 0;
 // Basically updates stuff
 setInterval(function repeat() {
-	document.getElementById("moneyAmount").innerHTML = Math.ceil(money);
-	document.getElementById("ljMoneyAmount").innerHTML = 'Money: ' + Math.ceil(ljMoney) + '$';
-	document.getElementById("oakAmount").innerHTML = Math.ceil(oakWood);
-	document.getElementById("spruceAmount").innerHTML = Math.ceil(spruceWood);
+	//document.getElementById("moneyAmount").innerHTML = Math.ceil(money);
+	//document.getElementById("ljMoneyAmount").innerHTML = 'Money: ' + Math.ceil(ljMoney) + '$';
+	//document.getElementById("oakAmount").innerHTML = Math.ceil(oak);
+	//document.getElementById("spruceAmount").innerHTML = Math.ceil(spruceWood);
 	document.getElementById('WoodPerTree').innerHTML = 'Wood Per Tree: ' + WPT;
 
 	// Only allows you to pick a tile if the Lumberjack has money
@@ -682,23 +677,16 @@ setInterval(function repeat() {
 		document.getElementById("sectionRight3").style.cursor = "auto";
 	}
 
-	if(smillMoney > 0 && smillOak > 0 || smillSpruce > 0) {
+	if(smillMoney > 0 && smillOak >= 4 || smillSpruce >= 4) {
 		document.getElementById('sawmill').src = 'images/sawmillActive.png';
 	} else {
 		document.getElementById('sawmill').src = 'images/sawmill.png';
 	}
 
-	document.getElementById("smillMoneyAmount").innerHTML = 'Money: ' + Math.ceil(smillMoney) + '$';
+	//document.getElementById("smillMoneyAmount").innerHTML = 'Money: ' + Math.ceil(smillMoney) + '$';
 	document.getElementById("smillPlankAmount").innerHTML = 'Planks: ' + Math.floor(smillPlanks);
-	if(smillSpruce == 0 && smillOak != 0) {
-		document.getElementById("smillOakAmount").innerHTML = 'Oak: ' + Math.ceil(smillOak);
-	}
-	else if(smillOak == 0 && smillSpruce != 0) {
-		document.getElementById("smillOakAmount").innerHTML = 'Spruce: ' + Math.ceil(smillSpruce);
-	}
-	else if(smillSpruce == 0 || smillOak == 0) {
-		document.getElementById("smillOakAmount").innerHTML = 'Input wood';
-	}
+	document.getElementById("smillOakAmount").innerHTML = Math.ceil(smillOak);
+	document.getElementById("smillSpruceAmount").innerHTML = Math.ceil(smillSpruce);
 
 	if(ljOak >= 1) { // Wood made with the lumberjack goes directly into player's bank
 		withdrawWood('withdraw', 'oak');
@@ -707,12 +695,43 @@ setInterval(function repeat() {
 		withdrawWood('withdraw', 'spruce');
 	}
 
+	if(smillPlanks) {
+		withdrawPlanks('withdraw');
+	}
+
 }, 100);
 
 /*=====================================================================================
 									 UPGRADES
 =======================================================================================*/
-//newUpgrade('Better machinery', '"https://art.pixilart.com/be7630d7b1fa991.png"', 'Better machinery that turn your saws faster.', '+0.1 sawmill efficiency', '2000$', 'sawmill1', 1);
+async function animateNumber(variable, id) {
+	var displayedValue = Number(document.getElementById(id).innerHTML);
+	var v = variable;
+	var actualValue = Math.ceil(window[v]);
+	
+	if(displayedValue < actualValue) {
+		document.getElementById(id).innerHTML = Math.ceil(displayedValue+=(actualValue-displayedValue)*0.2);
+	}
+	if(displayedValue > actualValue) {
+		document.getElementById(id).innerHTML = Math.floor(displayedValue+=(actualValue-displayedValue)*0.2);
+	}
+}
+
+setInterval(function () {
+	animateNumber('money', 'moneyAmount');
+	animateNumber('oakWood', 'oakWoodAmount');
+	animateNumber('spruceWood', 'spruceWoodAmount');
+	animateNumber('planks', 'planksAmount');
+	animateNumber('ljMoney', 'ljMoneyAmount');
+	animateNumber('smillMoney', 'smillMoneyAmount');
+}, 33);
+
+
+
+	// Test function =       animateNumber(1000, 'oak');
+
+
+
 
 //Axe upgrades: 0 - 50
 //Sawmill upgrades: 51 - 100
@@ -922,7 +941,7 @@ function shopBuy(itemNum) {
 				hideItem("sawmillBuilding");
 				showItem("sawmill");
 				showItem("plank");
-				showItem("plankAmount");
+				showItem("planksAmount");
 				showItem("sectionRight2");
 				showItem("sectionRight3");
 				showItem("sawmillInputs");
@@ -1043,22 +1062,31 @@ setInterval(function addValue() {
 	var o = smillOak;
 	var s = smillSpruce;
 	var smillWoodCount = o += s;
+	var wps = sawmillWPS;
+	var positiveWPS = Math.abs(wps);
 	if(smillWoodCount > 0 && smillMoney > 0) { // Sawmill
-		smillPlanks += oneDec(sawmillPPS);
-		smillMoney += oneDec(sawmillMPS);
-		if(smillOak > 0) {
-			smillOak = oneDec(smillOak);
-			smillOak += oneDec(sawmillWPS);
-		}
-		if(smillSpruce > 0) {
-			smillSpruce = oneDec(smillSpruce);
-			smillSpruce += oneDec(sawmillWPS);
+		if(smillOak > smillSpruce) {
+			if(smillOak >= positiveWPS) {
+				smillOak = oneDec(smillOak);
+				smillOak += oneDec(sawmillWPS);
+
+				smillPlanks += oneDec(sawmillPPS);
+				smillMoney += oneDec(sawmillMPS);
+			}
+		} else if(smillSpruce > smillOak) {
+			if(smillSpruce >= positiveWPS) {
+				smillSpruce = oneDec(smillSpruce);
+				smillSpruce += oneDec(sawmillWPS);
+
+				smillPlanks += oneDec(sawmillPPS);
+				smillMoney += oneDec(sawmillMPS);
+			}
 		}
 	}
-	document.getElementById("plankAmount").innerHTML = Math.floor(planks);
-   	document.getElementById("moneyAmount").innerHTML = Math.ceil(money);
-	document.getElementById("oakAmount").innerHTML = Math.ceil(oakWood);
-	document.getElementById("spruceAmount").innerHTML = Math.ceil(spruceWood);
+	//document.getElementById("plankAmount").innerHTML = Math.floor(planks);
+   	//document.getElementById("moneyAmount").innerHTML = Math.ceil(money);
+	//document.getElementById("oakAmount").innerHTML = Math.ceil(oakWood);
+	//document.getElementById("spruceAmount").innerHTML = Math.ceil(spruceWood);
 
 	// Unrelated to the sawmill, just chucked in here for the loop
 	// Incremetally increase varible to create a timer to check if you have saved
@@ -1161,6 +1189,23 @@ switch(item){
 		case 40:
 			showItem('stocksSection');
 			//changeColor('stocksBtn', 'blue');
+			break;
+	}
+}
+
+function infoSwitch(item) {
+	hideItem('infoSection');
+	hideItem('landSection');
+switch(item){
+		case 10:
+			showItem('infoSection');
+			break;
+		case 20:
+			showItem('landSection');
+			break;
+		case 30:
+			break;
+		case 40:
 			break;
 	}
 }
@@ -1630,7 +1675,7 @@ async function lumberJack() {
 				}
 				lJackTreeStage = 1;
 				//treeLoose();
-				//oak += 5;
+				//oakWood += 5;
 				document.getElementById("moneyAmount").innerHTML = Math.ceil(money);
 				await sleep(lJackSpeedQuart);
 				x.style.left = "25px";
