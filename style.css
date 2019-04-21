@@ -1,3 +1,25 @@
+/*
+background textures made with:
+http://cpetry.github.io/TextureGenerator-Online/
+*/
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background:url(images/grayTexture.png);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background:url(images/brownTexture.png);
+}
+
+button:focus{
+    outline: none;
+}
+
 button {
 	background:transparent;
 	color:white;
@@ -80,6 +102,9 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp */
 
 
 
+#subheader {
+	background:url(images/brownTexture.png);
+}
 
 #upgradesContainer {
 	position: fixed;
@@ -109,8 +134,9 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp */
 	left:0px;
 	top:0px;
 	width:100%;
-	height:34px;
-	background:url(https://i.imgur.com/dD6dGTd.jpg) repeat-x bottom;
+	height:33px;
+	border-bottom:1px solid black;
+	background:url(images/brownTexture.png) repeat-x bottom;
 	color:#ccc;
 }
 
@@ -131,18 +157,15 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp */
 	top:0px;
 	height:100%;
 	width:200%;
-	background:url(https://i.imgur.com/dD6dGTd.jpg) repeat-y bottom;
+	background:url(images/brownTexture.png) repeat bottom;
 	color:#ccc;
 	overflow-y:scroll;
 }
 
-#sideBar>div {
+#sideBar .section {
+	position:relative;
 	border-bottom:solid black 2px;
-	background:url(https://i.imgur.com/dD6dGTd.jpg) repeat-y bottom;
-/*	display:inline-block;
-	float:left;
-	border-bottom:0px solid #000;
-	padding:7px 8px 9px 8px;*/
+	background:url(images/brownTexture.png) repeat-x bottom;
 }
 
 #sideBar>div:hover {
@@ -163,7 +186,7 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp */
 #clickTreeImage {
 	background-image: url();
     border: 10px solid black;
-    border-image: url(https://i.imgur.com/dD6dGTd.jpg) 30 round;
+    border-image: url(images/brownTexture.png) 30 round;
     width:400px;
 	height:533px;
 }
@@ -207,7 +230,7 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp */
 	background:rgba(0,0,0,0);
 	display:block;
 	border-left:2px inset;
-	background:url(https://i.imgur.com/dD6dGTd.jpg) repeat-y bottom;
+	background:url(images/brownTexture.png) repeat-y bottom;
 }
 
 .meadow {
@@ -265,7 +288,7 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp */
 	width:231px;
 	color:#ccc;
 	text-align:center;
-	background:url(https://storage.googleapis.com/webdesignledger.pub.network/LaT/edd/2016/02/subtle-light-grunge-texture-17.jpg) repeat-y bottom;
+	background:url(images/grayTexture.png) repeat-y bottom;
 }
 
 #itemShop>div, #ownedItems<div {
@@ -325,11 +348,6 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp */
 	visibility: hidden;
 }
 
-.building {
-	height:180px;
-	width:180px;
-}
-
 #sectionRight2 {
 	height:100%;
 	position:absolute;
@@ -341,10 +359,10 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp */
 	border-right:2px solid black;
 	text-align:center;
 	display:none;
-	background:url(https://storage.googleapis.com/webdesignledger.pub.network/LaT/edd/2016/02/subtle-light-grunge-texture-17.jpg) repeat-y bottom;
+	background:url(images/grayTexture.png) repeat-y bottom;
 }
 
-#sectionTree {
+#sectionTree, #optionsSection, #tooltipSection{
 	height:100%;
 	position:absolute;
 	right:461px;
@@ -354,7 +372,7 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp */
 	border-left:2px solid black;
 	border-right:2px solid black;
 	text-align:center;
-	background:url(https://storage.googleapis.com/webdesignledger.pub.network/LaT/edd/2016/02/subtle-light-grunge-texture-17.jpg) repeat-y bottom;
+	background:url(images/grayTexture.png) repeat-y bottom;
 }
 
 #sectionRight2 #title {
@@ -407,6 +425,8 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp */
     width: 0%;
 	background-color:gray;
 	transition: .999s linear;
+	border:black 2px solid;
+	border-left: 0px;
 }
 
 #ljChooseTile {
@@ -533,6 +553,21 @@ Thanks to https://www.w3schools.com/howto/howto_css_image_overlay.asp */
 	
 }
 
+#tooltipBox {
+	display:none;
+	color:white;
+	border:4px solid;
+	border-image: url(images/brownTexture.png) 30 round;
+	position:absolute;
+	bottom:0px;
+	left:0%;
+	text-align:left;
+	padding:10px;
+	width:393px;
+	height:auto;
+	background:url(images/menuTexture2.png) repeat-y bottom;
+}
+
 #inputSwitch {
 	position:absolute;
 	bottom:2px;
@@ -543,4 +578,27 @@ Thanks to https://www.w3schools.com/howto/howto_css_image_overlay.asp */
 	position:absolute;
 	bottom:25px;
 	left:0%;
+}
+
+#businessSwitch {
+	position:relative;
+	bottom:600px;
+	left:0%;
+}
+
+#sideBar button:hover {
+	
+}
+
+#sideBar #building:active, #sideBar #plantationIcon:active {
+	filter: brightness(0.9);
+}
+
+.building {
+	height:180px;
+	width:180px;
+}
+
+#sideBar .section:hover {
+	filter: brightness(1.2);
 }
