@@ -3,21 +3,50 @@ background textures made with:
 http://cpetry.github.io/TextureGenerator-Online/
 */
 
+/* width */
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 10px;
 }
 
+/* Track */
 ::-webkit-scrollbar-track {
-  background:url(images/grayTexture.png);
+  background-image:url(images/brownTexture.png);
+  border-left:1px solid black;
 }
-
+ 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background:url(images/brownTexture.png);
+  background: #352216; 
+    border-left:1px solid black;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #442c1d; 
+}
+
+
+div {
+	cursor:url(images/cursor.png), auto;
+}
+div:active {
+	cursor:url(images/cursorClick.png), auto;
+}
+
+button:active{
+    cursor:url(images/cursorClick.png), auto;
 }
 
 button:focus{
     outline: none;
+}
+
+button:hover{
+    cursor:url(images/cursor.png), auto;
+}
+
+a:hover{
+    cursor:url(images/cursor.png), auto;
 }
 
 button {
@@ -25,7 +54,7 @@ button {
 	color:white;
 }
 
-html,body {
+html, body {
     height: 100%;
 }
 
@@ -34,33 +63,6 @@ body {
    margin: 0 auto;
 }
 
-#itemShop input {
-    width: 48%;
-    color: black;
-    background:brown;
-    border-color:gray;
-
-}
-
-#sectionRight3 input {
-    width: 96%;
-    color: black;
-    background:#a8a8a8;
-    border-color:gray;
-
-}
-
-#sectionRight3 button {
-	width:100%;
-    background:#a8a8a8;
-    border-color:gray;
-    color:white;
-	background-color:brown;
-}
-
-#sectionRight3 button:hover {
-	transform: scale(1.05);
-}
 
 /*Thanks to w3schools for drop down code
 https://www.w3schools.com/howto/howto_css_dropdown.asp */
@@ -109,23 +111,26 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp */
 #upgradesContainer {
 	position: fixed;
 	top:35px;
-	height: 300px;
+	height: auto;
+	width:auto;
 	left:50%;
 	display:none;
 }
 
-.menu-drawer {
+.upgradesMenu {
   width: 94px;
   background-color: #ccc;
-  background-image: url(https://i.pinimg.com/originals/ef/28/65/ef286539b2537c1605a9c215ac28a4a0.jpg) 
-  height: 900px;
+  height: auto;
   position: absolute;
   right: 0px;
   top: 0;
   transition: right linear .2s;
   padding: 0px;
-  border: 10px solid green;
-  border-image: url(https://i.pinimg.com/originals/ef/28/65/ef286539b2537c1605a9c215ac28a4a0.jpg) 30 round;
+  border: 10px solid gray;
+}
+
+.upgradesMenu button {
+	width:100%;
 }
 /*End of menu code*/
 
@@ -141,39 +146,27 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp */
 }
 
 #topBar>div {
-	display:inline-block;
 	float:left;
 	border-right:0px solid #000;
-	/*box-shadow:0px 0px 3px 1px rgba(255,255,255,0.2) inset;*/
 	padding:7px 8px 9px 8px;
 }
 
-#topBar a {color:#fff;}
-#topBar a.blueLink {color:#06c;}
-#topBar a.blueLink:hover {color:#28f;text-shadow:0px 0px 3px #06c;}
-#sideBar {
-	position:absolute;
-	left:0px;
-	top:0px;
-	height:100%;
-	width:200%;
-	background:url(images/brownTexture.png) repeat bottom;
-	color:#ccc;
-	overflow-y:scroll;
+#topBar a {
+	color:#fff;
+}
+
+#topBar a.blueLink {
+	color:#06c;
+}
+
+#topBar a.blueLink:hover {
+	color:#28f;text-shadow:0px 0px 3px #06c;
 }
 
 #sideBar .section {
 	position:relative;
 	border-bottom:solid black 2px;
 	background:url(images/brownTexture.png) repeat-x bottom;
-}
-
-#sideBar>div:hover {
-	/*filter:brightness(120%);*/
-}
-
-#sideBar .small:hover {
-	transform: scale(1);
 }
 
 #sideBar .amount {
@@ -185,19 +178,27 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp */
 
 #clickTreeImage {
 	background-image: url();
-    border: 10px solid black;
+    border: 0px solid black;
     border-image: url(images/brownTexture.png) 30 round;
-    width:400px;
-	height:533px;
+    width:29%;
+	height:90%;
+	min-width:300px;
+	min-height:530px;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+	position:fixed;
+	bottom:0%;
 }
 
 #treeImage {
-	/*background-color: lime;*/
 	background-image: url();
-    width:180px;
-	height:220px;
+    width:100%;
+	height:10%;
 	border-bottom: 2px solid;
 }
+
+
 
 #lumberjackUpgrades {
 	display:none;
@@ -211,41 +212,11 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp */
 	top:30px;
 }
 
-#lumberjackImage {
-    width:90px;
-	height:132px;
-	left:5px;
-	top:200px;
-	position:absolute;
-	display:none;
-}
-
-#sectionRight {
-	height:100%;
-	position:absolute;
-	top:0px;
-	right:0px;
-	overflow-x:hidden;
-	overflow-y:hidden;
-	background:rgba(0,0,0,0);
-	display:block;
-	border-left:2px inset;
-	background:url(images/brownTexture.png) repeat-y bottom;
-}
-
 .meadow {
-	height:150px;
-	width:150px;
-	left:0%;
-	top:5%;
-	position:relative;
-}
-
-#oakForest {
-	height:150px;
-	width:150px;
-	left:0%;
-	top:5%;
+	height:70%;
+	width:70%;
+  	margin-left: auto;
+  	margin-right: auto;
 	position:relative;
 }
 
@@ -267,29 +238,93 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp */
 	bottom:0px;
 }
 
-#sectionLeft {
+
+ /*=========SECTIONS=======*/
+
+ #sideBar {
 	position:absolute;
 	left:0px;
 	top:0px;
-	width:30%;
-	bottom:0px;
-	min-width:100px;
-	/*overflow:hidden;*/
+	height:100%;
+	width:18%;
+	background:url(images/brownTexture.png) repeat bottom;
+	color:#ccc;
+	overflow-y:scroll;
 }
 
 #itemShop, #ownedItems, #Marketsection, #stocksSection {
-/*	display:none;*/
 	border-left: 2px inset black;
 	border-right: 2px inset black;
 	position:absolute;
-	right:883px;
+	left:18%;
 	top:0px;
 	height:100%;
-	width:231px;
+	width:20%;
 	color:#ccc;
 	text-align:center;
-	background:url(images/grayTexture.png) repeat-y bottom;
+	background:url(images/grayTexture.png) repeat bottom;
+	overflow-y: scroll;
 }
+
+#treeSection, #optionsSection, #tooltipSection, #lumberjackSection, #plantationSection, #sawmillSection, #stockSection, #stockInfo, #infoSection, #statsSection, #plantationBuildSection {
+	display:none;
+	width:30%;
+	left:38.1%;
+	height:100%;
+	position:absolute;
+	overflow-x:hidden;
+	overflow-y:scroll;
+	background:rgba(0,0,0,0);
+	border-left:2px solid black;
+	border-right:2px solid black;
+	/*text-align:center;*/
+	background:url(images/menuTexture2.png) repeat bottom;
+	text-align:center;
+	color:gray;
+}
+
+#sectionBusiness {
+	height:100%;
+	position:absolute;
+	left:68%;
+	width:15%;
+	overflow-x:hidden;
+	overflow-y:scroll;
+	background:rgba(0,0,0,0);
+	border-left:2px solid black;
+	border-right:2px solid black;
+	text-align:center;
+	background:url(images/grayTexture.png) repeat bottom;
+}
+
+#sectionRight {
+	height:100%;
+	width:16.8%;
+	position:absolute;
+	top:0px;
+	right:0px;
+	overflow-x:hidden;
+	overflow-y:hidden;
+	background:rgba(0,0,0,0);
+	border-left:2px inset;
+	background:url(images/brownTexture.png) repeat bottom;
+}
+
+
+#messageBox {
+	max-width:95%;
+	font-size:12px;
+	height:auto;
+	background-image: linear-gradient(to right, #333f4a, #4b5e70);
+	color:white;
+	border:white 0.7px solid;
+  	margin-left: auto;
+  	margin-right: auto;
+	position:relative;
+	border-radius: 2px;
+}
+
+
 
 #itemShop>div, #ownedItems<div {
 	display:inline-block;
@@ -300,8 +335,9 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp */
 #title {
 	font-size:30px;
 	color:black;
-	text-decoration: underline;
+	
 	text-align:center;
+	font-family:Candara;
 }
 
 #small, .small  {
@@ -316,81 +352,42 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp */
 	border-image:url(https://i.imgur.com/8Qdl11x.png) 1 round;*/
 }
 
-.tooltip {
-    position: relative;
-    display:inline-block;
+.bulk {
+	filter: brightness(0.4);
 }
 
-.tooltip .tooltiptext {
-	border:0.4px inset black;
-    visibility: hidden;
-    width: 400px;
-    background-color: #555;
-    color: #fff;
-    text-align: left;
-    padding: 5px;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -60px;
-    opacity: 0;
-    transition: opacity 0.3s;
-    font-size:15px;
+.bulk:hover {
+	filter: brightness(1.2);
 }
 
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
+#lumberjackInputs>button {
+	background-color:brown;
+	width:20%;
 }
 
-.tooltiptext:hover {
-	visibility: hidden;
+.tile {
+	height:65px;
+	width:65px;
+	position:relative;
+	float:right;
+	right:5px;
 }
 
-#sectionRight2 {
-	height:100%;
-	position:absolute;
-	right:262px;
-	overflow-x:hidden;
-	overflow-y:scroll;
-	background:rgba(0,0,0,0);
-	border-left:2px solid black;
-	border-right:2px solid black;
-	text-align:center;
-	display:none;
-	background:url(images/grayTexture.png) repeat-y bottom;
+.landBox {
+	padding-bottom:15px;
+	padding-top:5px;
+	padding-left:5px;
+	background-image:linear-gradient(to right, #333f4a, #4b5e70);
+	border-top:2px solid black;
+	text-align:left;
 }
 
-#sectionTree, #optionsSection, #tooltipSection{
-	height:100%;
-	position:absolute;
-	right:461px;
-	overflow-x:hidden;
-	overflow-y:hidden;
-	background:rgba(0,0,0,0);
-	border-left:2px solid black;
-	border-right:2px solid black;
-	text-align:center;
-	background:url(images/grayTexture.png) repeat-y bottom;
+.landBox:hover {
+	filter: brightness(1.2);
 }
 
-#sectionRight2 #title {
+#sectionBusiness #title {
 	margin-top:40px;
-}
-
-#sectionRight3 {
-	height:100%;
-	position:absolute;
-	right:150px;
-	width:110px;
-	/*overflow-x:hidden;
-	overflow-y:scroll;*/
-	background:rgba(0,0,0,0);
-	border-left:2px solid black;
-	border-right:2px solid black;
-	text-align:center;
-	display:block;
 }
 
 .description {
@@ -401,7 +398,7 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp */
 	color:#ea842a;
 }
 
-.meadow, #sawmill, #planksAmount, #ownedItems, #Marketsection, #sawmillInputs, #lumberjackInputs, #sectionRight3, #stocksSection, #landSection {
+#sawmill, #planksAmount, #ownedItems, #Marketsection, #stocksSection, #landSection {
 	display:none;
 }
 
@@ -429,91 +426,47 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp */
 	border-left: 0px;
 }
 
-#ljChooseTile {
-	margin: 0 auto; 
-}
 
-#messageBox {
-	border:white 2px solid;
-	height:100%;
-}
-
-
-
-/***************************Overlay info effect*************************
-Thanks to https://www.w3schools.com/howto/howto_css_image_overlay.asp */
-
-#sawmill, #treeImage, #lumberjackImage, #oakForest, #spruceForest{
-  opacity: 1;
-  display: block;
-  transition: .5s ease;
-  backface-visibility: hidden;
-}
-
-#middle, #lumberjackInfoContainer, #oakLandInfoContainer, #spruceLandInfoContainer {
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
-  top: 360px;
-  left: 90px;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-/*.sawmillContainer:hover #sawmill, #treeAndLumber:hover #treeImage, #treeAndLumber:hover #lumberjackImage, #oakLandContainer:hover #oakForest, #spruceLandContainer:hover #spruceForest  {
-  opacity: 0.3;
-}
-
-.sawmillContainer:hover #middle, #treeAndLumber:hover #lumberjackInfoContainer, #oakLandContainer:hover #oakLandInfoContainer, #spruceLandContainer:hover #spruceLandInfoContainer{
-  opacity: 1;
-}*/
-
-#sawmillInfo, #lumberjackInfo, #oakLandInfo, #spruceLandInfo {
-  color: white;
-  background-color: #555;
-  font-size: 12px;
-  padding: 8px 16px;
-}
 
 #sawmill, #spruceForest, #chosenOakTile, #chosenSpruceTile {
 	display:none;
 }
-
-#oakLandInfoContainer {
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
-  top: 140px;
-  left: 80px;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-#spruceLandInfoContainer {
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
-  top: 300px;
-  left: 80px;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-
 
 #oakIcon, #spruceIcon, #chosenTree {
 	width:18px;
 	height:24px;
 }
 
-#ownedItems>button, #itemShop>button, #Marketsection>button, #stocksSection>button, #infoSection>button, #landSection>button{
+#ownedItems>button, #itemShop>button, #Marketsection>button, #stocksSection>button, #landSection>button{
 	color:white;
-	background-color:brown;
+	/*background-color:brown;*/
+	background:#333f4a;
 	width:50%;
 }
+
+#navSection>button, #landSection>button {
+	color:white;
+	background-color:#333f4a;
+	background-image:linear-gradient(to right, #333f4a, #4b5e70);
+	border-width:0.3px;
+	width:95%;
+	text-align:left;
+	font-size:15px;
+}
+
+#navSection>button:hover {
+	filter:brightness(1.5);
+}
+
+#navIcon {
+	position:relative;
+	width:17px;
+	height:17px;
+	float:right;
+	right:2px;
+}
+
+
 
 #Marketsection>input {
 	color:white;
@@ -521,11 +474,11 @@ Thanks to https://www.w3schools.com/howto/howto_css_image_overlay.asp */
 	width:48%;
 }
 
-#ownedItems>button:hover, #itemShop>button:hover, #Marketsection>button:hover, #stocksSection>button:hover, #infoSection>button:hover, #landSection>button:hover {
-	transform: scale(1.05);
+#ownedItems>button:hover, #itemShop>button:hover, #Marketsection>button:hover, #stocksSection>button:hover, #landSection>button:hover {
+	filter: brightness(0.8);
 }
 
-#info:hover, #small:hover, .small:hover, #lumImage:hover, #moneyIcon:hover, .infoButton:hover {
+#itemShop .small:hover {
 	transform: scale(1.2);
 	/*animation: shake 0.1s;*/
 
@@ -553,20 +506,21 @@ Thanks to https://www.w3schools.com/howto/howto_css_image_overlay.asp */
 	
 }
 
-#tooltipBox {
+#tooltipBox, #tooltipBoxLumberjack, #tooltipBoxPlantation, #tooltipBoxSawmill, #tooltipBoxStock, #tooltipBoxStockInfo, #tooltipBoxSettings, #tooltipBoxInfo, #tooltipBoxStats {
 	display:none;
 	color:white;
-	border:4px solid;
+	border-top:4px solid;
+	border-bottom:4px solid;
 	border-image: url(images/brownTexture.png) 30 round;
-	position:absolute;
+	position:fixed;
 	bottom:0px;
-	left:0%;
 	text-align:left;
-	padding:10px;
-	width:393px;
+	padding:1%;
+	width:27.5%;
 	height:auto;
-	background:url(images/menuTexture2.png) repeat-y bottom;
+	background:url(images/menuTexture2.png) repeat bottom;
 }
+
 
 #inputSwitch {
 	position:absolute;
@@ -595,10 +549,146 @@ Thanks to https://www.w3schools.com/howto/howto_css_image_overlay.asp */
 }
 
 .building {
-	height:180px;
-	width:180px;
+	height:30%;
+	width:101%;
+	border-bottom:8px solid;
+	border-image: url(images/brownTexture.png) 100 round;
+	display:none;
 }
 
 #sideBar .section:hover {
+	filter: brightness(1.2);
+}
+
+#stockSection .section {
+	left:3px;
+	padding:2px;
+	position:relative;
+	border-bottom:solid black 2px;
+	background:url(images/grayTexture.png) repeat-x bottom;
+	width:97%;
+}
+
+#stockSection .section:hover {
+	filter: brightness(1.05);
+}
+
+#stockSection {
+	text-align:left;
+}
+
+#stockSection .amount {
+	position:absolute;
+	left:30px;
+	bottom:10%;
+	/*bottom:505px;*/
+}
+
+#stockSection .percent {
+	position:absolute;
+	left:70%;
+	bottom:10%;
+	/*bottom:505px;*/
+}
+
+#sawmillBar {
+	width:0%;
+	height:70px;
+	background-color:#ff8300;
+	background-image:linear-gradient(to right, #ff8300, #fff200);
+	border-top-left-radius:10px;
+	border-bottom-left-radius:10px;
+}
+
+#barContainer {
+	width:99%;
+	border:2px solid black;
+	border-radius:10px;
+}
+
+#menuExitLeft {
+	top:34px;
+	position:relative;
+	float:left;
+	bottom:3px;
+	background-color:#333f4a;
+}
+
+.buildingExitLeft {
+	position:relative;
+	float:left;
+	top:15px;
+	background-color:#333f4a;
+}
+
+#sawmillSection button  {
+	background-color:#333f4a;
+}
+
+#infoSection a {
+	 color:#99b3ff;
+}
+
+#infoSection a:hover {
+	color:gray;
+}
+
+.height-collapse {
+    height: 0px;
+}
+
+.message {
+	margin-top:3px;
+	margin-bottom:3px; 
+	margin:5px;
+	border:1px solid gray;
+	border-radius:2px;
+	background-color:#333f4a;
+	padding-right:1px;
+	padding-left:1px;
+}
+
+.statistics {
+	text-align:left;
+	margin-left:3px;
+}
+
+.statistics section {
+	border-bottom:1px groove gray;
+	margin-bottom:8px;
+}
+
+.stat {
+	float:right;
+	margin-right:3px;
+}
+
+#lumberjackOnOff:hover {
+	color:gray;
+}
+
+.price {
+	color:#11ad14;
+}
+
+.upgradeImg {
+	height:48px;
+	width:48px;
+	position:relative;
+	float:right;
+	right:5px;
+}
+
+.upgradeBox {
+	padding-bottom:15px;
+	padding-top:5px;
+	padding-left:5px;
+	background-image:linear-gradient(to right, #333f4a, #4b5e70);
+	border-top:2px solid black;
+	border-bottom:2px solid black;
+	text-align:left;
+}
+
+.upgradeBox:hover {
 	filter: brightness(1.2);
 }
