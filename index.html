@@ -1,530 +1,528 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<link rel="shortcut icon" type="image/png" href="images/hatchet.png"/>
-		<link href="style.css" rel="stylesheet" type="text/css">
-		<title>Wood Cutter</title>
-	</head>
-	<style>
-	*{
-		font-family: Consolas;
-		user-select: none;
-	}
-	</style> 
-	<body onload="loadUp()">
 
-		<div id="sideBar">
+<head>
+    <link rel="shortcut icon" type="image/png" href="images/hatchet.png" />
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <title class="name">Wood Cutter</title>
+</head>
+<style>
+    * {
+        font-family: Consolas;
+        user-select: none;
+    }
+</style>
 
-			<div style="font-size:10px;">Look on my works ye mighty and despair!</div>
-			<div>
+<body onload="loadUp()">
 
-			<br />
+    <div id="sideBar">
 
-			<div id="money" style="position:relative; border-bottom:solid black 2px;"><img id="moneyIcon" class="small" src="images/money.png";/><section class="amount" id="moneyAmount" style="bottom:17px;">0</section><font size="1px"; id="moneyPS">Per second:</font></div>
+        <div style="font-size:10px;">Look on my works ye mighty and despair!</div>
+        <div>
 
-			<section onclick="toggleShow('resourceSection')" class="section" id="resourceBuildingButton" style="text-align:center; border-top:2px;">Resource overview</button></div>
+            <br />
 
-			<div id="resourceSection">
+            <div onmouseover="spawnTooltip('money');" onmouseout="tooltip(-1);" id="money" style="position:relative; border-bottom:solid black 2px;"><img onclick="cheatCode(1);" id="moneyIcon" class="small" src="images/money.png" ;/>
+                <section class="amount" id="moneyAmount" style="bottom:17px;">0</section>
+                <font size="1px" ; id="moneyPS">Per second:</font>
+            </div>
 
-				<div onmouseover="spawnTooltip('oak');" onmouseout="tooltip(-1);" class="section" id="oakWoodIcon" onclick="switchResourceType(0);"><img class="small" src="images/oakLog.png"/><section class="amount" id="oakWoodAmount" style="bottom:20px;">0</section><font size="1px"; id="oakPS">Per second:</font></div>
+            <section onmouseover="spawnTooltip('resourceSection');" onmouseout="tooltip(-1);" class="resourceTab" id="resourceBuildingButton" style="text-align:center; border-top:2px;">Resource overview<img src="images/collapse.png" class="collapse" id="resourceCollapse" onclick="toggleShow('resourceSection', 'resourceCollapse')" /></section>
+        </div>
 
-				<div onmouseover="spawnTooltip('spruce');" onmouseout="tooltip(-1);" class="section" id="spruceWoodIcon" style="display:none" onclick="switchResourceType(1);"><img  class="small" src="images/spruceLog.png";/><section class="amount" id="spruceWoodAmount" style="bottom:20px;">0</section><font size="1px"; id="sprucePS">Per second:</font></div>
+        <div id="resourceSection">
 
-				<div onmouseover="spawnTooltip('planks');" onmouseout="tooltip(-1);" class="section" id="plank" onclick=" switchResourceType(2);"><img class="small" src="images/plank.png"><section class="amount" id="planksAmount" style="bottom:20px;"></section></div>
+            <section id="sellButtons" onmouseover="spawnTooltip('sell');" onmouseout="tooltip(-1);"><button id="sellBtn" onclick="sell('all');">Sell all</button><button style="border-left:0px;" id="sellBtn" onclick="sell('half');">Sell half</button>
+                <!-- <button>Market</button> -->
+            </section>
 
-		<!-- 		<div onmouseover="spawnTooltip('goldenWood');" onmouseout="tooltip(-1);" class="section" id="goldWoodIcon" onclick="switchResourceType(2);"><img class="small" src="images/pinkLog.png"><section class="amount" id="goldWoodAmount" style="bottom:20px;"></section></div> -->
+            <div onmouseover="spawnTooltip('oak');" style="border-top:solid black 2px;" onmouseout="tooltip(-1);" class="section" id="oakIcon" onclick="switchResourceType('oak');"><img onclick="cheatCode(3);" class="small" src="images/oak.png" />
+                <section class="amount" id="oakWoodAmount">0</section>
+                <font size="1px" ; id="oakPS">Per second:</font>
+            </div>
 
-			</div>
+            <div style="display:none;" onmouseover="spawnTooltip('goldenWood');" style="border-top:solid black 2px;" onmouseout="tooltip(-1);" class="section" id="goldenWoodIcon" onclick="switchResourceType('goldenWood');"><img class="small" src="images/spruce.png" />
+                <section class="amount" id="goldenWoodAmount">0</section>
+                <font size="1px" ; id="goldenWoodPS">Per second:</font>
+            </div>
 
-			<section onclick="toggleShow('businessSection')" class="section" id="resourceBuildingButton" style="text-align:center; border-top:2px;">Businesses</section>
+            <div onmouseover="spawnTooltip('woodchip');" onmouseout="tooltip(-1);" class="section" id="woodchipIcon" onclick="switchResourceType('woodchip');"><img onclick="cheatCode(2);" class="small" src="images/woodchip.png" ;/>
+                <section class="amount" id="woodchipAmount">0</section>
+                <font size="1px" ; id="woodchipPS">Per second:</font>
+            </div>
 
-			<div id="businessSection">
+            <div onmouseover="spawnTooltip('planks');" onmouseout="tooltip(-1);" class="section" id="plankIcon" style="display:none" onclick=" switchResourceType('plank');"><img class="small" src="images/plank.png">
+                <section class="amount" id="planksAmount"></section>
+                <font size="1px" ; id="plankPS">Per second:</font>
+            </div>
 
-				<div onmouseover="spawnTooltip('lumberjack'), replaceText('lumberjackUnlock', 'Unlock');" onmouseout="tooltip(-1), replaceText('lumberjackUnlock', 'Lumberjack');" class="section" id="lumberjackIcon" onclick="unlockBusiness('lumberjack');"><img class="small" src="images/lumberjackProfile.png"/><section class="amount" id="lumberjackUnlock" style="bottom:20px;">Lumberjack</section></div>
+            <div onmouseover="spawnTooltip('cookie');" onmouseout="tooltip(-1);" class="section" id="cookieIcon" style="display:none" onclick=" switchResourceType('cookie');"><img class="small" src="images/cookie.png">
+                <section class="amount" id="cookieAmount"></section>
+            </div>
 
-				<div onmouseover="spawnTooltip('plantation'), replaceText('plantationUnlock', 'Unlock');" onmouseout="tooltip(-1), replaceText('plantationUnlock', 'Plantation');" class="section" id="plantationIcon" onclick="unlockBusiness('plantation');"><img class="small" src="images/plantation.png"/><section class="amount" id="plantationUnlock" style="bottom:20px;">Plantation</section></div>
+        </div>
 
-				<div onmouseover="spawnTooltip('sawmill'), replaceText('sawmillUnlock', 'Unlock');" onmouseout="tooltip(-1), replaceText('sawmillUnlock', 'Sawmill');" class="section" id="sawmillIcon" onclick="unlockBusiness('sawmill');"><img class="small" src="images/sawmillShopIcon.png"/><section class="amount" id="sawmillUnlock" style="bottom:20px;">Sawmill</section></div>
+        <section onmouseover="spawnTooltip('tree');" onmouseout="tooltip(-1);" class="resourceTab" id="resourceBuildingButton" style="text-align:center; border-top:2px;">Tree overview<img src="images/collapse.png" class="collapse" id="treeAmountCollapse" onclick="toggleShow('treeAmountSection', 'treeAmountCollapse')" /></section>
 
-			</div>
+        <div id="treeAmountSection">
 
-			</div>
+            <div onmouseover="spawnTooltip('oakTree');" onmouseout="tooltip(-1);" class="section" id="oakTreeIcon"><img style="height:48px; width:44px;" src="images/Tree.png" />
+                <section id="treeAmount" class="amount oakTreeAmount">0</section>
+                <font size="1px" ; id="oakTreePS"></font>
+            </div>
 
-	    </div>
+        </div>
 
+    </div>
 
-		<div id="itemShop">
-			<br />
-			<br />
-			<div id="title">  SHOP </div>
+    </div>
 
-			<button id="shopBtn" onmouseover="spawnTooltip('shopButton');" onmouseout="tooltip(-1);" onclick="shopSwitch(10);">Shop</button><button id="ownedBtn" onmouseover="spawnTooltip('ownedButton');" onmouseout="tooltip(-1);" onclick="shopSwitch(20);">Owned</button>
 
-			<button id="marketBtn" onmouseover="spawnTooltip('marketButton');" onmouseout="tooltip(-1);" onclick="shopSwitch(30);">Market</button><!-- <button id="stocksBtn" onmouseover="spawnTooltip('stocksButton');" onmouseout="tooltip(-1);" onclick="shopSwitch(40);">Stocks</button>--><button id="stocksBtn" onmouseover="spawnTooltip('stocksButton');" onmouseout="tooltip(-1);" onclick="messageDisplay('Stocks not currently available. Update coming soon!');">Stocks</button>
+    <div id="upgradeSection">
+        <br /><br />
+        <div id="title">UPGRADES</div>
+        <div id="subheader">&nbsp;</div>
+        <div class="itemSection">
+            <div id="upgradeAnchor"></div>
+        </div>
 
-			<div id="subheader">Sell products</div>
+    </div>
 
-			<button id="sellBtn" onclick="sellWood('all');">Sell all</button><button id="sellBtn" onclick="sellWood('half');">Sell half</button>
-			
-			<div id="TilesShop">
+    <div id="stocksSection" style="text-align:left;">
+        <br /><br />
+        <div id="title">STOCK MARKET</div>
 
-				<div id="subheader">Land</div>
+        <div id="subheader">My Portfolio</div>
+        <div id="portfolioAnchor"></div>
+        <div id="noStocks"><i>You don't own any stocks.</i></div>
 
-				<br />
+        <div id="subheader">The News</div>
+        <div id="ecNews"></div>
 
-				<img class="small" id="sprucePatch" onclick="shopBuy('spruceTile');" onmouseover="spawnTooltip('spruceTile');" onmouseout="tooltip(-1);" src="images/spruceTile.png">
+    </div>
 
-				<!-- <img id="small" onclick="messageDisplay('You try to buy the Earth, but people just look at you weird.')" onmouseover="spawnTooltip('earth');" onmouseout="tooltip(-1);" src="images/earth.png"> -->
 
-				<div class="itemSection">
-					<div id="subheader">Upgrades</div>
-<!-- 					<div class="upgradeBox" onclick="">
-						Better machinery<img class="upgradeImg" src="images/grayCog.png"/>
-						<br />
-						<span class="price">$200</span>
-						<br />
-						<span class="effect">10% faster production</span>
-					</div> -->
-				</div>
+    <div id='sectionRight'>
 
-			</div>
+        <br /><br />
 
-		</div>
+        <div id="navSection" style="text-align:center" ;>
+            <div style="color:black;" id="title"> NAVIGATION </div>
+            <button id="treeSectionBtn" onclick="nav('tree')">Tree<image id="navIcon" src="images/Tree.png"/></button><br />
+            <button id="infoSectionBtn" onclick="nav('info');">Info<image id="navIcon" src="images/info.png"/></button><br />
+            <button id="optionsSectionBtn" onclick="nav('options')">Options</button><br />
+            <button id="businessSectionBtn" onclick="nav('business')">Business<image id="navIcon" src="images/lumberjack.png"/></button><br />
+            <button id="achievementsSectionBtn" onclick="nav('achievements'), updateAchievements()">Achievements</button><br />
+            <button id="upgradesSectionBtn" onclick="nav('upgrades')">Upgrades</button><br />
+            <button id="statsSectionBtn" onclick="nav('stats')">Stats<image id="navIcon" src="images/stockMarket.png"/></button><br />
+            <button id="stockSectionBtn" onclick="nav('stock')">Stocks<image id="navIcon" src="images/stockMarket.png"/></button><br />
+            <button id="rouletteSectionBtn" onclick="nav('roulette')">Casino<image id="navIcon" src="images/chip10.png"/></button><br />
 
-		<div id="ownedItems">
+            <div id="subheader" style="color:white;">Businesses<img src="images/collapse.png" class="collapse" id="businessCollapse" onclick="toggleShow('businessNavSection', 'businessCollapse')" /></div>
+            <div id="businessNavSection">
+                <button id="lumberjackSectionBtn" onmouseover="spawnTooltip('lumberjack');" onmouseout="tooltip(-1);" onclick="nav('lumberjack')">Lumberjack<image id="navIcon" src="images/lumberjack.png"/></button><br />
+                <button id="salesSectionBtn" onmouseover="spawnTooltip('sales');" onmouseout="tooltip(-1);" onclick="nav('sales')">Sales<image id="navIcon" src="images/sales.png"/></button><br />
+                <button id="plantationSectionBtn" onmouseover="spawnTooltip('plantation');" onmouseout="tooltip(-1);" onclick="nav('plantation')">Plantation<image id="navIcon" src="images/plantation.png"/></button><br />
+                <button id="sawmillSectionBtn" onmouseover="spawnTooltip('sawmill');" onmouseout="tooltip(-1);" onclick="nav('sawmill')">Sawmill<image id="navIcon" src="images/sawmill.png"/></button><br />
+            </div>
 
-			<br /><br />
+            <div id="subheader" style="color:white;">Messages</div>
+            <div id="messageBox" style="height:2000px;">
+                <section id="messageSection"></section>
+            </div>
 
-			<div id="title">UPGRADES</div>
+        </div>
 
-			<button id="shopBtn" onmouseover="spawnTooltip('shopButton');" onmouseout="tooltip(-1);" onclick="shopSwitch(10);">Shop</button><button id="ownedBtn" onmouseover="spawnTooltip('ownedButton');" onmouseout="tooltip(-1);" onclick="shopSwitch(20);">Owned</button>
+    </div>
 
-			<button id="marketBtn" onmouseover="spawnTooltip('marketButton');" onmouseout="tooltip(-1);" onclick="shopSwitch(30);">Market</button><!-- <button id="stocksBtn" onmouseover="spawnTooltip('stocksButton');" onmouseout="tooltip(-1);" onclick="shopSwitch(40);">Stocks</button>--><button id="stocksBtn" onmouseover="spawnTooltip('stocksButton');" onmouseout="tooltip(-1);" onclick="messageDisplay('Stocks not currently available. Update coming soon!');">Stocks</button>
 
-			<div class="axeUpgradeSection">
-				<div id="subheader">Axe</div>
-				<br />
-			</div>
+    <div id="sectionBusiness">
 
-			<div class="lumberjackSection">
-				<div id="subheader">Lumberjack</div>
-				<br />
-			</div>
+        <div id="title"> BUSINESS </div>
+        <div style="font-size: 11px; color: green" ;>Click a business to<br /> open its menu</div>
 
-			<div class="sawmillSection">
-				<div id="subheader">Sawmill</div>
-				<br />
-			</div>
+        <div id="businessAnchor"></div>
 
-			<div class="plantationSection">
-				<div id="subheader">Plantation</div>
-				<br />
-			</div>
+        <div id="lumberjack" class="buildingContainer">
+            <img id="lumberjackImg" class="building" onclick="nav('lumberjack');" src="images/lumberjack.png" ; draggable="false" ;/>
+            <span class="buildingHeader">Lumberjack</span>
+            <img src="images/collapse.png" class="collapse" id="lumberjackCollapse" onclick="toggleShow('lumberjackImg', 'lumberjackCollapse')" />
+        </div>
 
-		</div>
+        <div id="sales" class="buildingContainer">
+            <img id="salesImg" class="building" onclick="nav('sales');" src="images/sales.png" ; draggable="false" ;/>
+            <span class="buildingHeader">Sales</span>
+            <img src="images/collapse.png" class="collapse" id="salesCollapse" onclick="toggleShow('salesImg', 'salesCollapse')" />
+        </div>
 
-		<div id="Marketsection">
-			<br /><br />
+        <div id="plantation" class="buildingContainer">
+            <img id="plantationImg" class="building" onclick="nav('plantation');" src="images/plantation.png" ;/>
+            <span class="buildingHeader">Plantation</span>
+            <img src="images/collapse.png" class="collapse" id="plantationCollapse" onclick="toggleShow('plantationImg', 'plantationCollapse')" />
+        </div>
 
-			<div id="title">MARKET</div>
+        <div id="sawmill" class="sawmillContainer buildingContainer">
+            <img id="sawmillImg" class="building" onclick="nav('sawmill');" src="images/sawmill.png" ;/>
+            <span class="buildingHeader">Sawmill</span>
+            <img src="images/collapse.png" class="collapse" id="sawmillCollapse" onclick="toggleShow('sawmillImg', 'sawmillCollapse')" />
+        </div>
 
-			<button id="shopBtn" onmouseover="spawnTooltip('shopButton');" onmouseout="tooltip(-1);" onclick="shopSwitch(10);">Shop</button><button id="ownedBtn" onmouseover="spawnTooltip('ownedButton');" onmouseout="tooltip(-1);" onclick="shopSwitch(20);">Owned</button>
+    </div>
 
-			<button id="marketBtn" onmouseover="spawnTooltip('marketButton');" onmouseout="tooltip(-1);" onclick="shopSwitch(30);">Market</button><!-- <button id="stocksBtn" onmouseover="spawnTooltip('stocksButton');" onmouseout="tooltip(-1);" onclick="shopSwitch(40);">Stocks</button>--><button id="stocksBtn" onmouseover="spawnTooltip('stocksButton');" onmouseout="tooltip(-1);" onclick="messageDisplay('Stocks not currently available. Update coming soon!');">Stocks</button>
 
-			<div style="background-color:brown">Not yet implemented.</div>
+    <div style="display:block; background:url(images/grayTexture.png)" id="treeSection">
+        <div id="treeFrame">
+            <div class="treeButton">
 
-			<br /><br />
+                <img id="clickTreeImage" ; onmousedown="clickTree();" onmouseup="" onmouseover="changeToAxe();" src="images/Trees/oakTree.png" ; draggable="false" ;/>
 
-			<div id="subheader">Your offers</div>
+            </div>
+        </div>
+    </div>
 
-			<br />
 
-			<div id="subheader">Available offers</div>
+    <div id="lumberjackSection" style="color:white;">
+        <button class="menuExit" onclick="nav('tree')">X</button>
+        <br />
+        <h2 style="color:gray">Lumberjack</h2>
 
-		</div>
+        <div class="landBox" onclick="buyBusiness('sales')">
+            Buy lumberjack<img class="tile" src="images/lumberjack.png" />
+            <hr />
+            <span id="lumberjackPriceDisplay"></span>
+        </div>
+        <hr />
+        <span id="oakAssignedDisplay"></span>
 
-		<div id="stocksSection">
-			<br /><br />
-			<div id="title">STOCK MARKET</div>
+    </div>
 
-			<button id="shopBtn" onmouseover="spawnTooltip('shopButton');" onmouseout="tooltip(-1);" onclick="shopSwitch(10);">Shop</button><button id="ownedBtn" onmouseover="spawnTooltip('ownedButton');" onmouseout="tooltip(-1);" onclick="shopSwitch(20);">Owned</button>
 
-			<button id="marketBtn" onmouseover="spawnTooltip('marketButton');" onmouseout="tooltip(-1);" onclick="shopSwitch(30);">Market</button><!-- <button id="stocksBtn" onmouseover="spawnTooltip('stocksButton');" onmouseout="tooltip(-1);" onclick="shopSwitch(40);">Stocks</button>--><button id="stocksBtn" onmouseover="spawnTooltip('stocksButton');" onmouseout="tooltip(-1);" onclick="messageDisplay('Stocks not currently available. Update coming soon!');">Stocks</button>
+    <div id="businessSection" style="color:white; display:none;">
+        <button class="menuExit" onclick="nav('tree')">X</button>
+        <br />
+        <h2 style="color:gray">Businesses</h2>
 
-			<div id="subheader">My Portfolio</div>
+        <span id="businessPanelAnchor"></span>
 
-			<br />
+    </div>
 
-			<div id="subheader">Economy News</div>
 
+    <div id="salesSection" style="color:white;">
+        <button class="menuExit" onclick="nav('tree')">X</button>
+        <br />
+        <h2 style="color:gray">Sales</h2>
 
-		</div>
+        <div class="landBox" onclick="buyBusiness('sales')">
+            Buy salesmen<img class="tile" src="images/sales.png" />
+            <hr />
+            <span id="salesPriceDisplay"></span>
+        </div>
+        <hr />
+        <img class="small" src="images/oak.png" /><input type="range" min="0" max="100" value="50" class="slider" id="oakRange"><button>Assign</button>
+        <span id="oakAssignedDisplay"></span>
 
+    </div>
 
-		<div id='sectionRight'>
 
-			<br /><br />
+    <div id="plantationSection" style="color:white;">
+        <button class="menuExit" onclick="nav('tree')">X</button>
+        <br />
+        <h2 style="color:gray">Plantation</h2>
 
-			<div id="landSection" style="text-align:center;">
-				<div id="title"> LAND </div>
-				<button onclick="infoSwitch(10);">Back</button>
+        <div class="landBox" onclick="buyBusiness('plantation')">
+            Buy plantation<img class="tile" src="images/plantation.png" />
+            <hr />
+            <span id="plantationPriceDisplay"></span>
+        </div>
 
-				<img class="meadow"; id="oakForest" onclick="switchTree(1);" src="images/oakTile.png";/>
+        <div>You have <span class="inlineHighlight" id="plantationTreeAmountDisplay"></span> growing trees across your <span class="inlineHighlight" id="plantationAmountDisplay"></span> plantations.
+            <hr />Every second, there is a chance some of your trees will mature:
+            <hr /><span id="newGrowthDisplay"></span></div>
 
-				<img class="meadow"; id="spruceForest" onclick="switchTree(2);" src="images/spruceTile.png";/>
-			</div>
+    </div>
 
 
-			<div id="navSection" style="text-align:center";>
-				<div style="color:black;" id="title"> NAVIGATION </div>
-				<button onclick="nav('treeSection')">Tree<image id="navIcon" src="images/Tree.png"/></button><br />
-				<button onclick="nav('infoSection');">Info<image id="navIcon" src="images/info.png"/></button>
-				<button onclick="infoSwitch(20);">Land</button>
-				<button onclick="nav('optionsSection')">Options</button><br />
-				<button onclick="nav('statsSection')">Stats<image id="navIcon" src="images/stockMarket.png"/></button><br />
-				<button onclick="nav('stockSection'), shopSwitch(40)">Stocks<image id="navIcon" src="images/stockMarket.png"/></button><br />
-				<button id="lumberjackBtn" onclick="nav('lumberjackSection')">Lumberjack<image id="navIcon" src="images/lumberjackProfile.png"></button><br />
-				<button id="plantationBtn" onclick="nav('plantationSection')">Plantation<image id="navIcon" src="images/plantation.png"></button><br />
-				<button id="sawmillBtn" onclick="nav('sawmillSection')">Sawmill<image id="navIcon" src="images/sawmillActive.png"></button>
+    <div id="sawmillSection" style="color:white;">
+        <button class="menuExit" onclick="nav('tree')">X</button>
+        <br />
+        <h2 style="color:gray">Sawmill</h2>
 
-				<div id="subheader" style="color:white;">Messages</div>
-				<div id="messageBox" style="height:2000px;">
-					<section id="messageSection"></section>
-				</div>
-				
-			</div>
+        <div class="landBox" onclick="buyBusiness('sawmill')">
+            Buy sawmill<img class="tile" src="images/sawmill.png" />
+            <hr />
+            <span id="sawmillPriceDisplay"></span>
+        </div>
 
-		</div>
+        <div>You have <span class="inlineHighlight" id="sawmillAmountDisplay"></span> sawmills producing <span class="inlineHighlight" id="sawmillPlankDisplay"></span> at a cost of <span class="inlineHighlightNegative" id="sawmillWoodDisplay"></span> and
+            <span class="inlineHighlightNegative" id="sawmillMoneyDisplay"></span> per second.</div>
 
+    </div>
 
+    <div style="color:black;" id="stockSection">
+        <button class="menuExit" onclick="nav('tree')">X</button>
+        <br />
+        <h2 style="color:gray; text-align:center;">Stock Market</h2>
+        <span id="stockAnchor"></span>
 
-		<div id="sectionBusiness">
-
-			<div id="title"> BUSINESS </div>
-			<div style="font-size: 11px; color: green";>Click a business to<br /> open its menu</div>
-
-			<div>
-				<img id="lumberjackImage" class="building" onclick="nav('lumberjackSection');" src="images/lumberjackNew2.png"; draggable="false";/>
-			</div>
-
-			<br />
-
-			<div>
-				<img class="building" id="plantation" onclick="nav('plantationSection');" src="images/plantation.png";/>
-			</div>
-
-			<div class="sawmillContainer">
-				<img class="building" id="sawmill" onclick="nav('sawmillSection');" src="images/sawmill.png";/>
-			</div>
-
-		</div>
-
-
-		<div style="display:block; background:url(images/grayTexture.png)" id="treeSection">
-			<div id="treeAmount">You have 123 oak trees.</div>
-			<div id="treeFrame">
-				<div class="treeButton">
-
-					<img id="clickTreeImage"; onmousedown="cutTree();" onmouseup="" onmouseover="changeToAxe();" src="images/oakTree.png"; draggable="false";/>
-
-				</div>
-			</div>
-
-			<div id="tooltipBox"></div>
-		</div>
-
-
-		<div id="lumberjackSection" style="color:white;">
-			<br />
-			<button class="buildingExitLeft" onclick="hideItem('lumberjackSection')">X</button>
-
-			<h2 style="color:gray">Lumberjack</h2>
-
-			<div style="background-image:linear-gradient(to right, #333f4a, #4b5e70);">
-				<div onmouseover="spawnTooltip('ljOnOff');" onmouseout="tooltip(-1);"><span id="lumberjackOnOff" onmousedown="lumberjackOnOff();">Turn off</span></div>
-				<div onmouseover="spawnTooltip('ljBulk');" onmouseout="tooltip(-1);" style="border-bottom:2px solid black; border-top:2px solid black;"><span id="bulkOne" onclick="changeAmount(1)" class="bulk">1</span> <span id="bulkHundred" onclick="changeAmount(100)" class="bulk">100</span> <span id="bulkThousand" onclick="changeAmount(1000)" class="bulk">1000</span> <span id="bulkAll" onclick="changeAmount('all')" class="bulk">All</span></div><div onmouseover="spawnTooltip('ljAddRemove');" onmouseout="tooltip(-1);"><span id="lumberjackAdd" style="display:none;" onclick="boolean('addRemove'), hideItem('lumberjackAdd'), showItem('lumberjackRemove')">Switch to add</span> <span id="lumberjackRemove" onclick="boolean('addRemove'), hideItem('lumberjackRemove'), showItem('lumberjackAdd')">Switch to remove</span></div>
-			</div><br />
-
-			You have <span id="lumberjackNumber"></span> lumberjacks
-
-			<div style="border-bottom:2px solid black;" class="landBox" onclick="buyBusiness('lumberjack')">
-				Hire lumberjack<img class="tile" src="images/lumberjackProfile.png"/>
-				<br />
-				<span id="lumberjackPrice"></span>
-				<br />
-				<span id="lumberjackAmount"></span> lumberjacks employed
-			</div>
-			<br />
-			<font size="2.5px">
-			Unassgned lumberjacks: <span id="lumberjackAvailable"></span>
-			</font>
-			<br />
-
-			Click a tile to assign lumberjacks
-				<div class="landBox" onclick="assign('oak', 'lumberjack')">
-					Oak forest<img class="tile" src="images/oakTile.png"/>
-					<br />
-					<span id="oakTreeAmount"></span>
-					<br />
-					<span id="oakLumberjacks"></span> lumberjacks assigned
-				</div>
-
-				<div id="spruceChoose" style="display:none;" class="landBox" onclick="assign('spruce', 'lumberjack')">
-					Spruce forest<img class="tile" src="images/spruceTile.png"/>
-					<br />
-					<span id="spruceTreeAmount"></span>
-					<br />
-					<span id="spruceLumberjacks"></span> lumberjacks assigned
-				</div>
-				
-
-			<span id="lumberjackTileAnchor"></span>
-
-			<div id="tooltipBoxLumberjack"></div>
-
-		</div>
-
-		<div id="plantationSection" style="color:white;">
-			<br />
-			<button class="buildingExitLeft" onclick="hideItem('plantationSection')">X</button>
-
-			<h2 style="color:gray">Plantation</h2>
-
-			<div style="background-image:linear-gradient(to right, #333f4a, #4b5e70); ">
-			<div style="border-bottom:2px solid black; border-top:2px solid black;">How many at a time<br /><span id="bulkOne" onclick="changeAmount(1)" class="bulk">1</span> <span id="bulkHundred" onclick="changeAmount(100)" class="bulk">100</span> <span id="bulkThousand" onclick="changeAmount(1000)" class="bulk">1000</span> <span id="bulkAll" onclick="changeAmount('all')" class="bulk">All</span></div></div><br />
-
-			<font>You have <span id="plantationNumber"></span> plantations</font>
-
-				<div class="landBox" style="border-bottom:2px solid black;" onclick="shopBuy('plantation')">
-					Plantation lease<img class="tile" src="images/document.png"/>
-					<br />
-					<span class="price" id="plantationPrice"></span>
-					<br />
-					<font size="2.5px">Each lease allows you to build one plantation.</font>
-					<br />
-				</div>
-				<br />
-			<font size="2.5px">Unbuilt plantations: <span id="unbuiltPlantations"></span></font><br />
-
-			Click a tile to build plantations
-				<div class="landBox" onclick="assign('oak', 'plantation')">
-					Oak forest<img class="tile" src="images/oakTile.png"/>
-					<br />
-					<span id="oakTrees"></span>
-					<br />
-					<span id="oakPlantations"></span> plantations built
-				</div>
-
-				<div id="spruceBuild" style="display:none;" class="landBox" onclick="assign('spruce', 'plantation')">
-					Spruce forest<img class="tile" src="images/spruceTile.png"/>
-					<br />
-					<span id="spruceTrees"></span>
-					<br />
-					<span id="sprucePlantations"></span> plantations built
-				</div>
-
-			<div id="plantationInputs">
-				<div id="treeSeconds"></div>
-			</div>
-
-			<div>Every tree has a <span id="plantationChance">0.2%</span> chance to reach maturity every second.</div>
-
-			<div id="tooltipBoxPlantation"></div>
-		</div>
-
-
-		<div id="plantationBuildSection" style="color:white;">
-				
-
-
-			<div id="tooltipBoxPlantationBuild"></div>
-
-		</div>
-
-
-		<div id="sawmillSection">
-			<br />
-			<button class="buildingExitLeft" onclick="hideItem('sawmillSection')">X</button>
-
-				<h2 id="sectionHeader">Sawmill</h2>
-				<div >
-					<div class="landBox" style="border-bottom:2px solid black;" onclick="shopBuy('sawmill')">
-						Build sawmill<img class="tile" src="images/sawmillShopIcon.png"/>
-						<br />
-						<span id="sawmillPrice"></span>
-						<br />
-						<span id=""></span> sawmills owned
-					</div>
-					<div id="sawmillPlanksPerSecond" style="color: green";>Per second</div>
-					<div id="sawmillMoneyPerSecond" style="color: red";>Per second</div>
-					<div id="sawmillWoodPerSecond" style="color: red";>Per second</div>
-					<br />
-					Choose which wood to use<br />
-					<image onclick="sawmillWoodType('oak')" onmouseover="spawnTooltip('sawmillOak');" onmouseout="tooltip(-1);" class="small" src="images/oakLog.png">
-					<image onclick="sawmillWoodType('spruce')" onmouseover="spawnTooltip('sawmillSpruce');" onmouseout="tooltip(-1);" class="small" src="images/spruceLog.png">
-				</div>
-
-			<div id="barContainer">
-				<div id="sawmillBar"></div>
-			</div>
-			<div id="barTime"></div>
-
-
-					<h2>About</h2>
-
-					<button id="sawmillOnOff" onmousedown="sawmillOnOff();">Turn off</button>
-
-
-			<div id="tooltipBoxSawmill"></div>
-
-		</div>
-
-		<div style="color:black;" id="stockSection">
-			<br /><br />
-			<span id="stockAnchor"></span>
-
-			<div id="tooltipBoxStock"></div>
-
-		</div>
-
-		<div style="color:black;" id="stockInfo">
-			<br />
-			<button id="buildingExitLeft" style="float:left; margin-top:15px;" onclick="hideItem('stockInfo')">X</button>
-			<br />
-			<canvas id="stockCanvas" width="400" height="200"></canvas>
-
-			<span id="stockInfoAnchor"></span>
-
-			<div id="tooltipBoxStockInfo"></div>
-
-		</div>
-
-
-		<div id="optionsSection">
-			<button id="menuExitLeft" onclick="hideItem('optionsSection')">X</button>
-			<br />
-			<h2>Settings</h2>
-
-			<div id="tooltipBoxSettings"></div>
-		</div>
-
-		<div id="infoSection">
-			<button id="menuExitLeft" onclick="hideItem('infoSection')">X</button>
-			<br />
-			<h2>About</h2>
-			<section style="padding-left:8px; text-align:left; font-family:Tahoma"><font style="color:#3dc62b;">Wood Cutter</font> is a JavaScript game. It is still in development, thus many features are unfinished or missing. Some of the art and style is conceptual and will be replaced in the future. The game is best enjoyed in Google Chrome.<br /><br />If you have any suggestions or find any bugs, feel free to join the <a href="https://discord.gg/5sqGVj5" target="_blank">Discord</a> server and tell me about them!</section>
-
-			<h2>Credits</h2>
-			<section style="padding-left:8px; text-align:left; font-family:Tahoma">Some of the pixel art in the game has been created by other artist. They let people use their assets for free. Below is a list of all the assets used:</section>
-
-			<ul style="text-align:left; font-family:Tahoma">
-	  			<li><a href="https://kicked-in-teeth.itch.io/grab-hand" target="_blank">Custom cursor hand</a></li>
-	  			<li><a href="https://ansimuz.itch.io/fantasy-weapons-set" target="_blank">Battle axe</a></li>
-	  			<li><a href="https://jestan.itch.io/trees" target="_blank">Tree icon used in navigation</a></li>
-	  			<!--<li><a href="https://raventale.itch.io/daily-doodles-pixelart-asset-pack" target="_blank">Royal axe</a></li>-->
-	  			<li><a href="https://dfyj.itch.io/tools" target="_blank">Hatchet, tomahawk and saw</a></li>
-			</ul>
-
-			<section style="padding-left:8px; text-align:left; font-family:Tahoma">Thanks to Asgeir for helpful input along the way.<br /></section>
-
-			<h2>History</h2>
-			<section style="padding-left:8px; text-align:left; font-family:Tahoma">
-			<h3>Version 0.2</h3>
-			<ul style="text-align:left; font-family:Tahoma">
-	  			<li>Added many new menus</li>
-	  			<li>Added more upgrades</li>
-	  			<li>Replaced some images</li>
-	  			<li>Revamped the way businesses work</li>
-	  			<li>Removed the input section completely</li>
-	  			<li>Every business now has its own menu(s)</li>
-	  			<li>Added custom cursor</li>
-	  			<li>Added stock market</li>
-	  			<li>Replaced the info section with navigation</li>
-	  			<li>Fixed number formatting</li>
-	  			<li>The layout now scales correctly and fits different resolutions (finally!)</li>
-			</ul>
-
-			<h3>Version 0.1 and earlier</h3>
-			<ul style="text-align:left; font-family:Tahoma">
-				<li>No update logs were made in earlier versions.</li>
-			</ul>
-
-			</section>
-			<div id="tooltipBoxInfo"></div>
-
-		</div>
-
-		<div id="statsSection">
-			<button id="menuExitLeft" onclick="hideItem('statsSection')">X</button>
-			<br />
-			<h2>Statistics</h2>
-			<div class="statistics">
-				<section>Time played:<span class="stat" id='timePlayed'></span></section>
-				<section>Wood from each tree:<span class="stat" id="WoodPerTree"></span></section>
-				<section>Trees cut by hand:<span class="stat" id="cutDownByHand"></span></section>
-				<section>Trees cut by lumberjacks:<span class="stat" id="cutDownLumberjack"></section>
+    </div>
+
+    <div style="color:black;" id="stockInfo">
+        <button class="menuExit" onclick="exitStock()">X</button>
+        <br />
+        <input id="colorPicker" onmouseover="spawnTooltip('colorPicker');" onmouseout="tooltip(-1);" style="float:right; margin-top:15px; height:20px; width:10%; border-color:transparent;" type="color" value="#ffffff">
+        <br />
+        <canvas id="stockCanvas" width="400" height="200"></canvas>
+
+        <!-- <button onclick="changePeriod('sixMonths')">Six months</button> -->
+        <button class="graphBtn" onclick="changePeriod(1000)">Month</button>
+        <button class="graphBtn" onclick="changePeriod(300)">Week</button>
+        <button class="graphBtn" onclick="changePeriod(40)">Day</button>
+
+        <br />
+
+
+        <br />
+        <span id="stockInfoAnchor"></span>
+
+    </div>
+
+
+    <div id="optionsSection">
+        <button class="menuExit" onclick="nav('tree')">X</button>
+        <br />
+        <h2>Options</h2>
+        <div>
+            <section onclick="settingChange('AutoSave')">Save game when closing tab<span class="stat" id="AutoSave">Off</span></section>
+            <section onclick="settingChange('ButtonHover')">Hidden purchase buttons<span class="stat" id="ButtonHover">Off</span></section>
+        </div>
+
+    </div>
+
+    <div id="achievementsSection">
+        <button class="menuExit" onclick="nav('tree')">X</button>
+        <br />
+        <h2>Achievements</h2>
+        <section id="achievementAnchor"></section>
+
+    </div>
+
+    <div id="upgradesSection">
+        <button class="menuExit" onclick="nav('tree')">X</button>
+        <br />
+        <h2>Upgrades</h2>
+        <section id="upgradeOverviewAnchor"></section>
+
+    </div>
+
+    <div id="marketSection">
+        <button class="menuExit" onclick="nav('tree')">X</button>
+        <br />
+        <h2>Market</h2>
+
+        <div>Choose resource</div>
+        <div class="dropdown">
+            <button class="dropbtn">Choose resource</button>
+            <div class="dropdown-content">
+                <a onclick="chooseTool('axe');">Axe</a>
+                <a id='chainsawTool' style="display:none;" onclick="chooseTool('chainsaw');">Chainsaw</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="infoSection">
+        <button class="menuExit" onclick="nav('tree')">X</button>
+        <br />
+        <h2>About</h2>
+        <section style="padding-left:8px; text-align:left; font-family:Tahoma">
+            <font class="name" style="color:#3dc62b;">Wood Cutter</font> is a JavaScript game. It is still in development, thus many features are unfinished or missing. Some of the art and style is conceptual and will be replaced in the future. The game is best enjoyed in Google Chrome.<br /><br
+            />If you have any suggestions or find any bugs, feel free to join the <a href="https://discord.gg/5sqGVj5" target="_blank">Discord</a> server and tell me about them!</section>
+
+        <h2>Credits</h2>
+        <section style="padding-left:8px; text-align:left; font-family:Tahoma">Some of the pixel art in the game has been created by other artist. They let me use it for free provided I include a link to their pages:</section>
+
+        <ul style="text-align:left; font-family:Tahoma">
+            <li><a href="https://kicked-in-teeth.itch.io/grab-hand" target="_blank">Custom cursor hand</a></li>
+            <li><a href="https://ansimuz.itch.io/fantasy-weapons-set" target="_blank">Battle axe</a></li>
+            <li><a href="https://jestan.itch.io/trees" target="_blank">Tree icon used in navigation</a></li>
+            <!--<li><a href="https://raventale.itch.io/daily-doodles-pixelart-asset-pack" target="_blank">Royal axe</a></li>-->
+            <li><a href="https://dfyj.itch.io/tools" target="_blank">Hatchet, tomahawk and saw</a></li>
+        </ul>
+
+        <section style="padding-left:8px; text-align:left; font-family:Tahoma">Thanks to <a href="https://github.com/Albretsen" target="_blank">Asgeir</a> for helpful input along the way.<br /></section>
+
+        <h2>Version history</h2>
+        <section style="padding-left:8px; text-align:left; font-family:Tahoma">
+            <h3>Version 0.3</h3>
+            <ul style="text-align:left; font-family:Tahoma">
+                <li>Added achievements</li>
+                <li>Added roulette</li>
+                <li>Added sales</li>
+                <li>Added woodchips</li>
+                <li>Added golden tree and wood</li>
+                <li>Added stock market (again)</li>
+                <li>Reworked upgrades to be more linear</li>
+                <li>Reworked tooltips to appear wherever the mouse is</li>
+                <li>Moved tree overview to resource section</li>
+                <li>Replaced some images</li>
+                <li>Click messages to remove them</li>
+                <li>Duplicate messages stack</li>
+                <li>Overview tabs are collapsible</li>
+                <li>Actually fixed number formatting</li>
+                <li>Buttons have sound and better design</li>
+                <li>For the sake of simplifying gameplay:</li>
+                <li>Removed different types of trees, there is now only the oak tree and oak wood</li>
+                <li>Removed land section</li>
+            </ul>
+
+            <h3>Version 0.2</h3>
+            <ul style="text-align:left; font-family:Tahoma">
+                <li>Added many new menus</li>
+                <li>Added more upgrades</li>
+                <li>Replaced some images</li>
+                <li>Revamped the way businesses work</li>
+                <li>Removed the input section completely</li>
+                <li>Every business now has its own menu(s)</li>
+                <li>Added custom cursor</li>
+                <li>Added stock market</li>
+                <li>Replaced the info section with navigation</li>
+                <li>Fixed number formatting</li>
+                <li>The layout now scales correctly and fits different resolutions (finally!)</li>
+            </ul>
+
+            <h3>Version 0.1 and earlier</h3>
+            <ul style="text-align:left; font-family:Tahoma">
+                <li>No update logs were made for earlier versions.</li>
+            </ul>
+
+        </section>
+
+    </div>
+
+    <div id="statsSection">
+        <button class="menuExit" onclick="nav('tree')">X</button>
+        <br />
+        <h2>Statistics</h2>
+        <div class="statistics">
+            <section>Time played:<span class="stat" id='timePlayed'></span></section>
+            <section>Minimum wood from each tree:<span class="stat" id="WoodPerTree"></span></section>
+            <section>Trees cut by hand:<span class="stat" id="cutDownByHand"></span></section>
+            <section>Trees cut by lumberjacks:<span class="stat" id="cutDownLumberjack"></section>
 				<section>Total trees cut down:<span class="stat" id="cutDownTotal"></span></section>
-				<!-- <section id="Pollution">Pollution: 0</section> -->
-				<section>Trees grown:<span class="stat" id="treesGrown"></span></section>
-				<section>Trees in plantations:<span class="stat" id="plantationTrees"></span></section>
-				<section>Planks produced:<span class="stat" id="planksProduced"></section>
-				<section>Money earned:<span class="stat" id="moneyEarned"></span></section>
-				<section>Earth population:<span class="stat" id="population"></span></section>
-			</div>
+            <!-- <section id="Pollution">Pollution: 0</section> -->
+            <section>Trees grown:<span class="stat" id="treesGrown"></span></section>
+            <section>Trees in plantations:<span class="stat" id="plantationTrees"></span></section>
+            <section>Planks produced:<span class="stat" id="planksProduced"></span></section>
+            <section>Roulette profit:<span class="stat" id="rouletteProfit"></span></section>
+            <section>Stock profit:<span class="stat" id="stockProfit"></span></section>
+            <section>Stocks bought:<span class="stat" id="stocksBought"></span></section>
+            <section>Money earned:<span class="stat" id="moneyEarned"></span></section>
+            <section>Earth population:<span class="stat" id="population"></span></section>
+        </div>
 
-			<div id="tooltipBoxStats"></div>
+        <canvas id="statsCanvas" width="400" height="200"></canvas>
 
-		</div>
+    </div>
+
+    <div id="rouletteSection">
+        <button class="menuExit" onclick="nav('tree')">X</button>
+        <br />
+
+        <h2>Roulette
+            <h2>
+
+                <div onclick="endSpin()" id="rouletteNumber">-</div>
+
+                <img id="rouletteTable" draggable="false" src="images/rouletteTable.png" ismap/>
+                <img id="ro1" class="chip" onclick="switchInHand(1)" draggable="false" src="images/chip1.png" />
+                <img id="ro5" class="chip" onclick="switchInHand(5)" draggable="false" src="images/chip5.png" />
+                <img id="ro10" class="chip" onclick="switchInHand(10)" draggable="false" src="images/chip10.png" />
+                <img id="ro50" class="chip" onclick="switchInHand(50)" draggable="false" src="images/chip50.png" />
+                <img id="ro100" class="chip" onclick="switchInHand(100)" draggable="false" src="images/chip100.png" />
+                <img id="ro1000" class="chip" onclick="switchInHand(1000)" draggable="false" src="images/chip1000.png" />
+
+                <br />
+
+                <button class="graphBtn" id="spinBtn" onclick="rouletteSpinInitial()">Spin</button>
+                <button class="graphBtn" id="clearBtn" onclick="resetBetArray()">Clear bets</button>
+
+                <div class="stockBanner">
+                    <div class="stockBannerHeader">
+                        Bets
+                    </div>
+
+                    <span class="stockText">Value</span>
+                    <span class="stockVal">Bet on</span>
+                    <hr />
+
+                    <div id="rouletteBets">
+
+                    </div>
+                </div>
+
+    </div>
 
 
 
+    <!--Upgrades menu -->
+    <div id="upgradesContainer">
+        <div class="upgradesMenu">
+            <button onclick="cheatMenu(0);">No roulette wait</button><br />
+            <button onclick="cheatMenu(3);">+1000 Oak</button><br />
+            <button onclick="cheatMenu(4);">+1000 Spruce</button><br />
+            <button onclick="cheatMenu(10);">+1000 Oak trees</button><br />
+            <button onclick="cheatMenu(5);">+1000 Trees cut</button><br />
+            <button onclick="cheatMenu(20);">+1000 Money</button><br />
+            <button onclick="boolean('unlockByClick')">Toggle achievements by click</button>
+        </div>
+    </div>
 
+    <div id="topBar">
+        <div><span class="name">Wood Cutter</span> <span style="color:#18de1c">v. 0.3</span></div>
 
-		<!--Upgrades menu -->
-		<div id="upgradesContainer">
-		    <div class="upgradesMenu">
-			    <button onclick="upgrade(3);">Oak</button><br />
-			    <button onclick="upgrade(4);">Spruce</button><br />
-		  		<button onclick="upgrade(10);">Tree</button><br />
-		  		<button onclick="upgrade(20);">Money</button><br />
-		      <!-- <button onclick="upgrade(x);">x</button><br /> -->
-		    </div>
-		</div>
+        <!-- <div><a style="color:#99b3ff" href="https://www.pixilart.com/dwastelander/gallery" target="_blank">Pixilart</a></div> -->
+        <div><a style="color:#99b3ff" href="https://discord.gg/5sqGVj5" target="_blank">Discord</a></div>
 
-		<div id="topBar">
-			<div><span>Wood Cutter</span> <span style="color:#11ad14">v. 0.2</span></div>
-
-			<!-- <div><a style="color:#99b3ff" href="https://www.pixilart.com/dwastelander/gallery" target="_blank">Pixilart</a></div> -->
-			<div><a style="color:#99b3ff" href="https://discord.gg/5sqGVj5" target="_blank">Discord</a></div>
-
-			<div class="dropdown">
-	  			<button class="dropbtn">Choose tool</button>
+        <div class="dropdown">
+            <!-- <button class="dropbtn">Choose tool</button>
 	  			<div class="dropdown-content">
 	    			<a onclick="chooseTool(0);">Axe</a>
 	    			<a id='chainsawTool' style="display:none;" onclick="chooseTool(1);">Chainsaw</a>
-	  			</div>
-			</div>
+	  			</div> -->
+        </div>
 
-			<div><button id="showCheats" onclick="showCheats();">Cheats</button></div>
+        <div><button class="topBtn" id="showCheats" onclick="showCheats();">Cheats</button></div>
 
-			<div><button id="saveGame">Save Game</button></div>
+        <div><button class="topBtn" onmouseover="spawnTooltip('saveBtn');" onmouseout="tooltip(-1);" id="saveGame">Save Game</button></div>
 
-			<div><button style="background-color:brown;" id="restartGame">Restart Game</button></div>
+        <div id="opsPerClickDisplay"></div>
 
-			<div></div>
-			<div id="howManyTrees"></div>
+        <div><button onclick="changeOpsPerClick()" class="topBtn" onmouseover="spawnTooltip('opsPerClick');" onmouseout="tooltip(-1);">Operations per click</button></div>
 
-			<div></div>
-			<div></div>
+        <div><button class="topBtn" onmouseover="spawnTooltip('restart');" onmouseout="tooltip(-1);" style="background-color:brown;" id="restartGame">Restart Game</button></div>
 
-		</div>
 
-		<audio>
-			<source id="cutAudio" src="images/cutSound.ogg" type="audio/ogg">
-		</audio>
+        <section onmouseover="spawnTooltip('cutVsGrown');" onmouseout="tooltip(-1);" id="treeSpectrum">
+            <span id="treesCutBar">&nbsp;</span>
+            <span id="treesGrownBar">&nbsp;</span>
+        </section>
 
-	</body>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="main.js"></script>
+    </div>
+
+    <div id="achievementNoticeAnchor"></div>
+
+    <div id="hideAllNotices" style="padding:0px; bottom:0.1%; display:none;" onclick="hideAll(), checkAll()">Hide all notices</div>
+
+    <div id="seedBox"><span id="seedAnchor"></span></div>
+
+    <div id="tooltipBox"></div>
+
+    <audio id="tap"><source src="audio/tap.mp3" type="audio/mpeg"></audio>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="js/main.js"></script>
+<script src="node_modules/chart.js/dist/chart.js"></script>
+<script src="js/stock_market.js"></script>
+
 </html>
