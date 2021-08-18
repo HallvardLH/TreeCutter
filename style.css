@@ -251,14 +251,14 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp */
     border: 0px solid black;
     border-image: url(images/brownTexture.png) 30 round;
     width: 29.4%;
-    height: 90%;
+    height: 98%;
     min-width: 300px;
     min-height: 530px;
     -moz-user-select: none;
     -webkit-user-select: none;
     user-select: none;
     position: fixed;
-    bottom: 0%;
+    top: 5vh;
 }
 
 #treeImage {
